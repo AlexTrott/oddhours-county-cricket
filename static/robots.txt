@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# This is the County Cricket Live fan site, not a score source to scrape from.
