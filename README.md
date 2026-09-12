@@ -56,6 +56,8 @@ Vendored from [OddHours House](https://oddhours-oddhours-io.vercel.app/tokens/) 
 | Railway / a small VPS         | Same idea                                                               | similar     |
 | Vercel / Cloudflare Pages     | **Not this stack** — no durable local SQLite without moving to D1/Turso |
 
+`vercel.json` turns off Git-triggered Vercel deployments and always skips the ignored-build step (exit `0` = skip). That stops a leftover Vercel GitHub App from failing CI. It does **not** make the site run on Vercel. If a Vercel check still fires, disconnect `alextrotts-projects/oddhours-county-cricket` in the Vercel dashboard. Do not switch to `adapter-vercel`.
+
 Health check: `GET /health`. PWA stub: `static/manifest.webmanifest` + `theme-color`.
 
 ## What this run shipped vs later

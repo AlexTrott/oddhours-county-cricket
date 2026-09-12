@@ -1,0 +1,7 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"git": {
+		"deploymentEnabled": false
+	},
+	"ignoreCommand": "echo 'County Cricket Live is adapter-node + SQLite. Skip Vercel; see README.' && exit 0"
+}
