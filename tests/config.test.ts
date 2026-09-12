@@ -34,10 +34,17 @@ describe('config schema', () => {
 		}
 	});
 
-	it('stores polling intervals and source selection', () => {
-		expect(appConfig.polling.liveSeconds).toBeGreaterThan(0);
+	it('stores polling intervals, ingest gate, and source selection', () => {
+		expect(appConfig.ingestion.enabled).toBe(false);
+		expect(appConfig.polling.liveMinSeconds).toBe(30);
+		expect(appConfig.polling.liveMaxSeconds).toBe(45);
+		expect(appConfig.polling.fixturesMatchDaySeconds).toBe(300);
+		expect(appConfig.polling.fixturesIdleSeconds).toBe(3600);
+		expect(appConfig.polling.standingsLiveSeconds).toBe(900);
+		expect(appConfig.polling.standingsIdleSeconds).toBe(21600);
 		expect(appConfig.sources.primary).toBe('espncricinfo');
 		expect(appConfig.sources.fallbacks).toEqual([]);
+		expect(appConfig.sources.byType.live.fallbacks).toEqual(['espncricinfo-rss']);
 		expect(appConfig.sources.blocked.map((item) => item.id).sort()).toEqual(['bbc', 'cricbuzz']);
 	});
 

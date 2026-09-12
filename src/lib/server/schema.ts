@@ -28,7 +28,12 @@ CREATE TABLE IF NOT EXISTS matches (
   target_balls INTEGER,
   toss_winner_id TEXT,
   toss_decision TEXT,
-  updated_at TEXT NOT NULL
+  updated_at TEXT NOT NULL,
+  round TEXT,
+  stale INTEGER NOT NULL DEFAULT 0,
+  source TEXT NOT NULL DEFAULT 'seed',
+  source_key TEXT,
+  last_good_at TEXT
 );
 
 CREATE TABLE IF NOT EXISTS innings (
@@ -112,7 +117,31 @@ CREATE TABLE IF NOT EXISTS meta (
   value TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS ingest_raw (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source TEXT NOT NULL,
+  data_type TEXT NOT NULL,
+  url TEXT NOT NULL,
+  fetched_at TEXT NOT NULL,
+  status_code INTEGER,
+  payload TEXT,
+  parse_ok INTEGER NOT NULL,
+  error TEXT
+);
+
+CREATE TABLE IF NOT EXISTS ingest_failures (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  source TEXT,
+  data_type TEXT,
+  url TEXT,
+  failed_at TEXT NOT NULL,
+  error TEXT,
+  payload TEXT
+);
+
 CREATE INDEX IF NOT EXISTS matches_status_idx ON matches(status, start_at);
 CREATE INDEX IF NOT EXISTS matches_teams_idx ON matches(home_team_id, away_team_id);
+CREATE INDEX IF NOT EXISTS matches_comp_idx ON matches(competition_id, start_at);
 CREATE INDEX IF NOT EXISTS innings_match_idx ON innings(match_id, innings_number);
+CREATE INDEX IF NOT EXISTS ingest_raw_fetched_idx ON ingest_raw(fetched_at);
 `;

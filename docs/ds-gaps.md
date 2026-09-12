@@ -10,14 +10,15 @@ Vendored `src/vendor/oddhours/oddhours.css` (imports `tokens.css`). Default hous
 
 These are **app-local** (`ccl-*`) because the house file has no recipe:
 
-| Need                     | Local name      | Why                                                                       |
-| ------------------------ | --------------- | ------------------------------------------------------------------------- |
-| iOS tab bar              | `.ccl-tabbar`   | House nav is a floating marketing pill, not a five-tab sports shell       |
-| Sticky app masthead      | `.ccl-masthead` | `oh-nav-wrap` is `position: fixed` and fights bottom tabs + score content |
-| Score / standings tables | `.ccl-table`    | No `oh-table`                                                             |
-| Live score type          | `.ccl-score`    | Display font + tabular nums                                               |
-| County picker swatch     | `.ccl-swatch`   | Colour chip, not a crest                                                  |
-| Seed source banner       | `.ccl-banner`   | Product copy, not a shop pack card                                        |
+| Need                     | Local name                          | Why                                                                       |
+| ------------------------ | ----------------------------------- | ------------------------------------------------------------------------- |
+| iOS tab bar              | `.ccl-tabbar`                       | House nav is a floating marketing pill, not a five-tab sports shell       |
+| Sticky app masthead      | `.ccl-masthead`                     | `oh-nav-wrap` is `position: fixed` and fights bottom tabs + score content |
+| Score / standings tables | `.ccl-table`                        | No `oh-table`                                                             |
+| Live score type          | `.ccl-score`                        | Display font + tabular nums                                               |
+| County picker swatch     | `.ccl-swatch`                       | Colour chip, not a crest                                                  |
+| Seed / freshness banner  | `.ccl-banner` / `.ccl-freshness--*` | Product copy, not a shop pack card                                        |
+| Knockout round list      | `.ccl-knockout-list`                | House has no bracket / fixture-round recipe                               |
 
 `oh-pack`, `oh-watermark`, `oh-hero-band`, and `oh-marquee` are shop / generator recipes. They do not fit a live scorecard. Not reused.
 

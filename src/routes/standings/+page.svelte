@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import StandingsTable from '$lib/components/StandingsTable.svelte';
-	import type { Competition } from '$lib/config';
+	import { COMPETITION_STORAGE_KEY, type Competition } from '$lib/config';
 
 	let { data } = $props();
 
 	function selectComp(competition: Competition) {
+		try {
+			localStorage.setItem(COMPETITION_STORAGE_KEY, competition.id);
+			document.cookie = `ccl_competition=${encodeURIComponent(competition.id)};path=/;max-age=${60 * 60 * 24 * 365};samesite=lax`;
+		} catch {
+			/* private mode */
+		}
 		const groupId = competition.groups[0].id;
 		void goto(`/standings?comp=${competition.id}&group=${groupId}`);
 	}
@@ -24,7 +30,8 @@
 <span class="oh-eyebrow">Tables</span>
 <h1 class="ccl-page-title oh-display">Who's sitting where.</h1>
 <p class="oh-lede">
-	Groups come from config, not from this page. Seeded 2026 tables, not live scrape.
+	Groups come from config, not from this page. Tables work from seed when ingest is off. Favourite
+	competition is remembered in a cookie.
 </p>
 
 <div class="oh-stack">

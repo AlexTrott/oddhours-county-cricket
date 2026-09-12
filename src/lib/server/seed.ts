@@ -1,5 +1,6 @@
 import type Database from 'better-sqlite3';
 import { appConfig } from '../config/index.js';
+import { seedCapturedEspn } from './seed-espn.js';
 
 type Bat = {
 	name: string;
@@ -43,17 +44,31 @@ type Standing = {
 
 export function seedDatabase(db: Database.Database): void {
 	const now = new Date().toISOString();
-	const insertMatch = db.prepare(`
+	const insertMatchStmt = db.prepare(`
 		INSERT INTO matches (
 			id, competition_id, group_id, season, home_team_id, away_team_id, venue,
 			start_at, end_at, status, format, day_number, session, result_text,
-			follow_on, target_runs, target_balls, toss_winner_id, toss_decision, updated_at
+			follow_on, target_runs, target_balls, toss_winner_id, toss_decision, updated_at,
+			round, stale, source, source_key, last_good_at
 		) VALUES (
 			@id, @competitionId, @groupId, @season, @homeTeamId, @awayTeamId, @venue,
 			@startAt, @endAt, @status, @format, @dayNumber, @session, @resultText,
-			@followOn, @targetRuns, @targetBalls, @tossWinnerId, @tossDecision, @updatedAt
+			@followOn, @targetRuns, @targetBalls, @tossWinnerId, @tossDecision, @updatedAt,
+			@round, @stale, @source, @sourceKey, @lastGoodAt
 		)
 	`);
+	const insertMatch = {
+		run(row: Record<string, unknown>) {
+			insertMatchStmt.run({
+				round: null,
+				stale: 0,
+				source: 'seed',
+				sourceKey: null,
+				lastGoodAt: now,
+				...row
+			});
+		}
+	};
 	const insertInnings = db.prepare(`
 		INSERT INTO innings (
 			id, match_id, innings_number, batting_team_id, runs, wickets, overs, declared,
@@ -1543,6 +1558,7 @@ export function seedDatabase(db: Database.Database): void {
 		insertMeta.run('source', 'seed');
 		insertMeta.run('updated_at', now);
 		insertMeta.run('seeded_at', now);
+		seedCapturedEspn(db, now);
 	});
 
 	tx();

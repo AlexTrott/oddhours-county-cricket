@@ -4,8 +4,10 @@ import type { County } from './schema.js';
 
 export const FAVOURITE_COOKIE = 'ccl_favourite';
 export const SCHEME_COOKIE = 'ccl_scheme';
+export const COMPETITION_COOKIE = 'ccl_competition';
 export const FAVOURITE_STORAGE_KEY = 'ccl-favourite';
 export const SCHEME_STORAGE_KEY = 'ccl-scheme';
+export const COMPETITION_STORAGE_KEY = 'ccl-competition';
 
 export type ColourScheme = 'light' | 'dark';
 

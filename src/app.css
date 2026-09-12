@@ -255,6 +255,26 @@ a {
 	margin: 0 0 var(--oh-space-5);
 }
 
+.ccl-freshness--delayed {
+	outline: 3px solid var(--oh-accent);
+}
+
+.ccl-freshness--unavailable {
+	outline: 3px solid #b42318;
+}
+
+.ccl-knockout-list {
+	margin: 0;
+	padding-left: 1.1rem;
+	display: grid;
+	gap: 0.65rem;
+}
+
+.ccl-knockout-list li {
+	display: grid;
+	gap: 0.15rem;
+}
+
 .ccl-footer.oh-footer {
 	padding-bottom: calc(var(--oh-space-6) + 0.5rem);
 }

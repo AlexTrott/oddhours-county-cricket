@@ -1,30 +1,25 @@
 # Next
 
-Shipped this run: Milestone 1 plus a usable seeded M2/M3 surface.
+Shipped this run: live ESPN JSON ingest (env-gated) + full-season fixtures UI. Seed still works with ingest off.
 
-## Not this run (do not start from a page load)
+## Not this run
 
-- **Live production scrape cutover** for ESPNCricinfo (`NotCutOverError` stays until robots + terms + rate limits are handled in `pnpm ingest`).
-- **YouTube live discovery** — `youtubeChannelId` is an empty string on every county.
+- **YouTube live discovery** — `youtubeChannelId` is still empty on every county.
 - **Push notifications** — settings shows a closed button.
-- **Accounts** — favourite is cookie + localStorage only.
-- **Women's cricket** — out of scope; do not silently mix competitions.
+- **Accounts** — favourite is cookie + localStorage; competition cookie is extra, not an account.
+- **Women’s cricket** — out of scope; RSS ingest drops women’s titles.
+- Licensed ball-by-ball feed.
 
-## M2/M3 still thin (usable, not finished)
+## Open / later
 
-- Live page polls `/api/live` against SQLite. When ingest writes rows, the UI will move. Until then it is seed.
-- Standings / fixtures are seed snapshots, not a 2026 live table.
-- Settings scheme toggle works; alerts / YouTube do not.
-- PWA is a manifest + theme-color stub, not a full service worker cache.
-
-## Possible later stack moves
-
+- Replace `takedown@example.com` before a public URL.
+- ESPN standings do not expose batting/bowling bonus separately; Championship bonus columns stay 0 after ingest.
+- Blast ESPN group names (North / Central & West / South) are mapped onto config Group A/B/C by team set + description.
+- `/health` warns at >3 min delayed and >15 min unavailable while ingest is enabled (seed mode never uses those banners).
 - Turso/libSQL if the host cannot keep a SQLite file.
-- A small worker on the same Node process for ingest cron (still not inside request handlers).
-- County YouTube IDs filled from official channels, then a discovery job.
+- Worker on the same Node process (`pnpm ingest --watch`) instead of an external cron.
 
 ## Product
 
-- Women's regional / county competitions as a separate config tree.
+- Women’s regional / county competitions as a separate config tree.
 - Ball-by-ball if a licensed feed exists.
-- Replace `takedown@example.com` before a public URL.

@@ -1,35 +1,74 @@
 # Score sources
 
-County Cricket Live is an unofficial fan site. This boot **does not scrape**. Page loads read SQLite only. Ingest is a separate process (`pnpm ingest`) and currently exits after explaining that production scrape is not cut over.
+County Cricket Live is an unofficial fan site. **Page loads never scrape.** They read SQLite only. Network ingest is a separate process (`pnpm ingest`), gated by `ingestion.enabled` / `INGESTION_ENABLED`.
 
-## Primary path — ESPNCricinfo
+## Primary path — ESPN public JSON (Cricinfo data)
 
 Config: `appConfig.sources.primary = 'espncricinfo'`.
 
-Provider: `src/lib/providers/espncricinfo.ts`. `enabled: true`, but `fetchLiveMatches()` throws `NotCutOverError`. That is intentional. A later milestone should:
+Working unofficial JSON, documented from ESPN’s own network calls (not HTML scrape):
 
-1. Fetch `robots.txt` at ingest time (this environment received an edge denial fetching it; do not assume allow).
-2. Honour crawl-delay and disallows.
-3. Prefer documented or licensed feeds if they exist; otherwise a polite, rate-limited HTML/JSON ingest with caching, off the request path.
-4. Keep county series URLs in `appConfig.series` rather than hard-coding them in UI.
+| Data                  | URL                                                                                                          | Notes                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| Scoreboard / fixtures | `https://site.web.api.espn.com/apis/site/v2/sports/cricket/{leagueId}/scoreboard` optional `?dates=YYYYMMDD` | `calendar` lists match days. Date ranges 404.              |
+| Scorecard             | `https://site.web.api.espn.com/apis/site/v2/sports/cricket/{leagueId}/summary?event={eventId}`               | Rosters carry batting/bowling; matchcards have extras/FOW. |
+| Standings             | `https://site.web.api.espn.com/apis/v2/sports/cricket/{leagueId}/standings`                                  | P/W/L/D/NR/Pts/NRR. No separate batting/bowling bonus.     |
 
-Do **not** treat Cricinfo as a free API. Check their terms before cutover.
+League IDs (2026): Championship Div 1 `8052` (series `1513323`), Div 2 `8204` (`1513324`), Blast `8053` (`1512690`), One-Day Cup `8335` (`1513325`).
 
-## Not fallbacks
+User-Agent: `CountyCricketLive/0.1 (+https://github.com/AlexTrott/oddhours-county-cricket; contact takedown@example.com)`.
 
-### BBC Sport
+### robots.txt (this environment)
 
-`robots.txt` on `www.bbc.co.uk` is explicit: no scraping, crawling, or systematic extraction; no summaries for your own use; no business use without permission. `appConfig.sources.blocked` includes `bbc`. `bbcProvider.enabled === false`. **Do not add BBC as a scrape fallback.**
+| Host                                                     | Result                                                                                                                              |
+| -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `https://espncricinfo.com/robots.txt`                    | 200. `User-agent: *` / `Allow: /*` with disallows for print wrappers, cgi-bin, video, internal tools. JSON APIs are not disallowed. |
+| `https://www.espncricinfo.com/robots.txt`                | Often **403** from Akamai. Do not assume allow from www.                                                                            |
+| `https://www.espn.com/robots.txt`                        | 200. Disallows some HTML paths (`*/playbyplay?`, `*/admin/`, …). `/apis/` is not disallowed.                                        |
+| `https://site.web.api.espn.com/robots.txt`               | 403 (no robots file). Follow parent ESPN rules.                                                                                     |
+| `https://hs-consumer-api.espncricinfo.com/`              | 403 from this environment. Not used.                                                                                                |
+| `https://www.espncricinfo.com/ci/engine/match/{id}.json` | 403 from this environment. Not used.                                                                                                |
 
-### Cricbuzz
+Ingest fetches robots at run time and skips blocked paths. Robots rules are applied **only to that host and its subdomains** (so ESPN.com disallows do not apply to `static.espncricinfo.com` RSS). Self-throttle: 1 request/second (or robots crawl-delay if larger).
 
-`User-agent: *` / `Disallow: /` for generic crawlers. Live score paths are also disallowed for Googlebot. `cricbuzzProvider.enabled === false`. **Do not add Cricbuzz as a fallback.**
+## Fallback per data type
+
+| Type            | Primary                                                | Fallback                                                                                                                                                  |
+| --------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Live scorecards | ESPN summary JSON                                      | **RSS** `https://static.espncricinfo.com/rss/livescores.xml` for _discovery of men’s county titles only_. No batting cards. Women’s cricket filtered out. |
+| Fixtures        | ESPN scoreboard + calendar walk (`pnpm ingest --full`) | None. RSS has no diary.                                                                                                                                   |
+| Standings       | ESPN standings JSON                                    | None.                                                                                                                                                     |
+
+### Why single-source for full cards
+
+BBC Sport and Cricbuzz remain **blocked** (robots / ToS). There is no second legal, key-free provider that offers county scorecards. cricketdata.org would need an API key and is not locked in config. Fuzzy matching (`competition + sorted teams + London date`, ±3 days for first-class) is implemented so a second provider can be attached later without rewriting IDs.
+
+## Persist + stale
+
+Raw payloads land in `ingest_raw`. Parser failures go to `ingest_failures` and set `matches.stale = 1`. Last good innings/standings are not overwritten.
+
+## Cadence (configurable in `appConfig.polling`)
+
+- Live scorecards: 30–45s **per live match only** (no live matches → no summary polling).
+- Fixtures: 5 minutes on match days (calendar hit), hourly otherwise. `--full` walks the season calendar.
+- Standings: 15 minutes if any match is live, else 6 hours.
+
+## Latency (open question §12)
+
+Observed from this environment (2026-09-12):
+
+- Scoreboard JSON: typically < 300ms, `cache-control: max-age=1`.
+- Standings JSON: ~200–400ms.
+- Summary JSON: large (300–400KB uncompressed); budget 1 rps so N live matches add ~N seconds per tick.
+- UI polls SQLite every 30s; delayed banner at **>3 min**; `/health` `ok: false` when ingest is on, something is live, and last good update is **>15 min**. `/health` logs a warning at delayed and unavailable.
+
+Seed `updated_at` is **not** treated as delayed. Freshness delayed/unavailable only applies when ingest is enabled.
 
 ## Ingest rules
 
 - Never call providers from `+page.server.ts` / `+layout.server.ts` / `hooks.server.ts`.
-- `pnpm ingest` is the only entry. Today it reports blocked sources and skips.
-- Seed data is labelled `meta.source = seed` with `updated_at` set at seed time.
+- `INGESTION_ENABLED=true pnpm ingest` (optional `--full`, `--watch`) is the only network entry.
+- Seed remains the offline default (`meta.source = seed`).
 
 ## Takedown
 

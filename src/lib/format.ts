@@ -44,6 +44,10 @@ export function formatDay(iso: string, timeZone = 'Europe/London'): string {
 	}).format(new Date(iso));
 }
 
+export function londonDateKey(iso: string, timeZone = 'Europe/London'): string {
+	return new Intl.DateTimeFormat('en-CA', { timeZone }).format(new Date(iso));
+}
+
 export function relativeUpdated(iso: string, now = new Date()): string {
 	const then = new Date(iso).getTime();
 	const delta = Math.max(0, now.getTime() - then);

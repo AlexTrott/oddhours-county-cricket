@@ -38,6 +38,9 @@
 			{/if}
 		</div>
 		<p class="ccl-kicker">{competitionLabel(match.competitionId, match.groupId)}</p>
+		{#if match.round && match.round !== 'group'}
+			<p class="oh-muted">{match.round.replace('-', ' ')}</p>
+		{/if}
 		<h3 class="oh-card__title">{matchHeadline(match)}</h3>
 		{#if match.status !== 'upcoming'}
 			<p class="ccl-score">
@@ -55,6 +58,9 @@
 			<p><strong>{chaseLine(match)}</strong></p>
 		{:else if match.resultText}
 			<p><strong>{match.resultText}</strong></p>
+		{/if}
+		{#if match.stale}
+			<p class="oh-muted">Scorecard stale — last good innings kept.</p>
 		{/if}
 		<p class="oh-muted">
 			{match.venue}{#if match.status === 'live' && match.dayNumber}

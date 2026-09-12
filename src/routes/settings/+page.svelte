@@ -75,9 +75,12 @@
 	<article class="oh-card">
 		<h2 class="oh-card__title">YouTube live</h2>
 		<p>
-			County channel IDs are empty placeholders in config. Discovery is a later milestone. Polling
-			intervals already live in config: live {data.polling.liveSeconds}s, standings
-			{data.polling.standingsSeconds}s, fixtures {data.polling.fixturesSeconds}s.
+			County channel IDs are empty placeholders in config. Discovery is a later milestone. Ingest
+			cadence (when enabled): live scorecards {data.polling.liveMinSeconds}–{data.polling
+				.liveMaxSeconds}s per live match; fixtures {data.polling.fixturesMatchDaySeconds}s on match
+			days /
+			{data.polling.fixturesIdleSeconds}s otherwise; standings {data.polling.standingsLiveSeconds}s
+			if anything is live else {data.polling.standingsIdleSeconds}s.
 		</p>
 		<button class="oh-btn oh-btn--sold-out" type="button" disabled>Not wired</button>
 	</article>

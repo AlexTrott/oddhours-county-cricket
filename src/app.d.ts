@@ -3,6 +3,7 @@ declare global {
 		interface Locals {
 			favourite: string | null;
 			scheme: 'light' | 'dark';
+			competition: string | null;
 		}
 	}
 }

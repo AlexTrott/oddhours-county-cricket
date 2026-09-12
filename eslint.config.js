@@ -44,6 +44,7 @@ export default ts.config(
 			'node_modules/**',
 			'src/vendor/**',
 			'data/**',
+			'tests/fixtures/**',
 			'coverage/**'
 		]
 	}
