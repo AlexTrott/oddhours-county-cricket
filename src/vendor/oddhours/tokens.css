@@ -1,0 +1,301 @@
+/**
+ * OddHours House — Design Tokens
+ * ==============================
+ * Locked house themes (do not invent a ninth):
+ *   theme-cream  — Peel & Press default (shops / products)
+ *   theme-night  — OddHours.com marketing only (the only dark theme)
+ *   theme-petrol — Harbour (trading-allowance / grown-up hustle)
+ *   theme-pip    — Pip (TFC / childcare / Now-Next)
+ *   theme-spark  — Ember Harbor (Bonfire → Christmas / event skins)
+ *   theme-lido   — Lido (World Book Day / dressing-up / zine / culture)
+ *   theme-pillar — Pillar (civic hustles)
+ *   theme-olive  — Allotment (harvest / cook cards / meal-plan / food)
+ *
+ * Consume: copy this file (or oddhours.css) into other OddHours repos.
+ * Apply with class on <html> (e.g. class="theme-lido").
+ */
+
+:root,
+.theme-cream {
+  /* Colour — locked default hexes */
+  --oh-paper: #fff7f0;
+  --oh-paper-deep: #f5ede3;
+  --oh-paper-white: #fafaf9;
+  --oh-ink: #151617;
+  --oh-band: #ff8a75;
+  --oh-accent: #ffb070;
+  --oh-accent-hot: #ff9e8a;
+  --oh-muted: #6b6560;
+  --oh-sticker-new: #ffe14a;
+  --oh-sticker-free: #8ee0a8;
+
+  /* Night tokens always available for documentation / selective use */
+  --oh-night-ink: #0b0b0b;
+  --oh-night-night: #1a1035;
+  --oh-night-magenta: #e11d74;
+  --oh-night-paper: #faf6f1;
+
+  /* Semantic surfaces (cream default) */
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-ink);
+  --oh-on-dark: var(--oh-paper);
+  --oh-shadow-colour: var(--oh-ink);
+
+  /* Type */
+  --oh-font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --oh-font-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --oh-font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --oh-text-xs: 0.75rem;
+  --oh-text-sm: 0.875rem;
+  --oh-text-body: 1.0625rem;
+  --oh-text-lg: 1.25rem;
+  --oh-text-xl: 1.5rem;
+  --oh-text-2xl: clamp(1.75rem, 3vw, 2.25rem);
+  --oh-text-display-sm: clamp(2.25rem, 6vw, 4rem);
+  --oh-text-display: clamp(3.25rem, 11vw, 8.5rem);
+
+  /* Space */
+  --oh-space-1: 0.25rem;
+  --oh-space-2: 0.5rem;
+  --oh-space-3: 0.75rem;
+  --oh-space-4: 1rem;
+  --oh-space-5: 1.5rem;
+  --oh-space-6: 2rem;
+  --oh-space-7: 3rem;
+  --oh-space-8: 4rem;
+  --oh-space-9: 6rem;
+  --oh-space-10: 8rem;
+
+  /* Radius — cards 16–24px, pills fully round */
+  --oh-radius-sm: 8px;
+  --oh-radius-md: 16px;
+  --oh-radius-lg: 24px;
+  --oh-radius-pill: 999px;
+
+  /* Border + sticker shadow */
+  --oh-border-width: 2px;
+  --oh-border: var(--oh-border-width) solid var(--oh-ink);
+  --oh-shadow-sm: 2px 2px 0 var(--oh-shadow-colour);
+  --oh-shadow: 4px 4px 0 var(--oh-shadow-colour);
+  --oh-shadow-lg: 8px 8px 0 var(--oh-shadow-colour);
+
+  /* Motion — short, no mush */
+  --oh-duration-fast: 120ms;
+  --oh-duration: 180ms;
+  --oh-ease: cubic-bezier(0.2, 0.75, 0.2, 1);
+
+  /* Layout */
+  --oh-nav-height: 4.5rem;
+  --oh-content: 72rem;
+  --oh-gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+/**
+ * theme-night — OddHours studio marketing variant ONLY.
+ * Do not use as the default for Peel & Press or product shops.
+ */
+.theme-night {
+  --oh-paper: var(--oh-night-paper);
+  --oh-paper-deep: var(--oh-night-night);
+  --oh-paper-white: #140f28;
+  --oh-ink: var(--oh-night-paper);
+  --oh-band: var(--oh-night-magenta);
+  --oh-accent: var(--oh-night-magenta);
+  --oh-accent-hot: #ff3d8e;
+  --oh-muted: #a39cb0;
+  --oh-sticker-new: #ffe14a;
+  --oh-sticker-free: #8ee0a8;
+
+  --oh-bg: var(--oh-night-ink);
+  --oh-bg-2: var(--oh-night-night);
+  --oh-surface: #140f28;
+  --oh-fg: var(--oh-night-paper);
+  --oh-fg-muted: #a39cb0;
+  --oh-cta: var(--oh-night-magenta);
+  --oh-cta-hover: #ff3d8e;
+  --oh-band-fg: var(--oh-night-paper);
+  --oh-on-dark: var(--oh-night-paper);
+  --oh-shadow-colour: var(--oh-night-magenta);
+  --oh-border: var(--oh-border-width) solid var(--oh-night-paper);
+}
+
+/**
+ * theme-petrol — Harbour.
+ * Trading-allowance / grown-up hustle tools. Cool mist paper + teal shout.
+ * Dark band: on-band type and ghost buttons use paper-white.
+ */
+.theme-petrol {
+  --oh-paper: #f0f4f3;
+  --oh-paper-deep: #d8e6e3;
+  --oh-paper-white: #f7faf9;
+  --oh-ink: #122326;
+  --oh-band: #1c7e84;
+  --oh-accent: #d4a017;
+  --oh-accent-hot: #e8a33d;
+  --oh-muted: #4a5c5a;
+  --oh-sticker-new: #f5c542;
+  --oh-sticker-free: #7ed4c0;
+
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-paper-white);
+  --oh-on-dark: var(--oh-paper-white);
+  --oh-shadow-colour: var(--oh-ink);
+}
+
+/**
+ * theme-pip — Pip.
+ * TFC / childcare / Now-Next. Bone paper + lime shout + clay secondary.
+ * Light band: on-band type stays ink.
+ */
+.theme-pip {
+  --oh-paper: #f6f3ea;
+  --oh-paper-deep: #e7e0cf;
+  --oh-paper-white: #faf9f5;
+  --oh-ink: #1a2118;
+  --oh-band: #c4d63a;
+  --oh-accent: #d4784a;
+  --oh-accent-hot: #e08a55;
+  --oh-muted: #6a6558;
+  --oh-sticker-new: #f0d84a;
+  --oh-sticker-free: #8fd47a;
+
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-ink);
+  --oh-on-dark: var(--oh-paper-white);
+  --oh-shadow-colour: var(--oh-ink);
+}
+
+/**
+ * theme-spark — Ember Harbor.
+ * Bonfire → Christmas / event skins. Greige linen + navy shout + gold/copper.
+ * Dark band: on-band type and ghost buttons use paper-white.
+ */
+.theme-spark {
+  --oh-paper: #eeebe4;
+  --oh-paper-deep: #ddd8ce;
+  --oh-paper-white: #faf8f4;
+  --oh-ink: #16141c;
+  --oh-band: #2a364e;
+  --oh-accent: #f0b429;
+  --oh-accent-hot: #e07040;
+  --oh-muted: #5c564c;
+  --oh-sticker-new: #ffd24a;
+  --oh-sticker-free: #7ec8b8;
+
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-paper-white);
+  --oh-on-dark: var(--oh-paper-white);
+  --oh-shadow-colour: var(--oh-ink);
+}
+
+/**
+ * theme-lido — Lido.
+ * World Book Day / dressing-up / zine / culture. Saturated Klein-adjacent cobalt vs Harbour teal and Ember navy.
+ * Dark band: on-band type and ghost buttons use paper-white.
+ */
+.theme-lido {
+  --oh-paper: #f6f0dc;
+  --oh-paper-deep: #e8dcc0;
+  --oh-paper-white: #fafaf6;
+  --oh-ink: #12151c;
+  --oh-band: #2154d4;
+  --oh-accent: #f5d400;
+  --oh-accent-hot: #e6c000;
+  --oh-muted: #5b616c;
+  --oh-sticker-new: #ffe86a;
+  --oh-sticker-free: #4fd4c8;
+
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-paper-white);
+  --oh-on-dark: var(--oh-paper-white);
+  --oh-shadow-colour: var(--oh-ink);
+}
+
+/**
+ * theme-pillar — Pillar.
+ * Civic hustles (NHS PPC, PCN letters, car-seat fit). True pillar-box red, not coral and not night magenta.
+ * Dark band: on-band type and ghost buttons use paper-white.
+ */
+.theme-pillar {
+  --oh-paper: #efe6d8;
+  --oh-paper-deep: #e0d2c2;
+  --oh-paper-white: #faf7f2;
+  --oh-ink: #1c1010;
+  --oh-band: #c4122e;
+  --oh-accent: #3aa0d8;
+  --oh-accent-hot: #2490c8;
+  --oh-muted: #6a5c56;
+  --oh-sticker-new: #ffd84a;
+  --oh-sticker-free: #7ed9a8;
+
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-paper-white);
+  --oh-on-dark: var(--oh-paper-white);
+  --oh-shadow-colour: var(--oh-ink);
+}
+
+/**
+ * theme-olive — Allotment.
+ * Harvest / cook cards / meal-plan / food. Deep khaki-olive, not Pip lime.
+ * Dark band: on-band type and ghost buttons use paper-white.
+ */
+.theme-olive {
+  --oh-paper: #e3ebc8;
+  --oh-paper-deep: #cdd6a8;
+  --oh-paper-white: #f7f8f0;
+  --oh-ink: #16140c;
+  --oh-band: #4a5c18;
+  --oh-accent: #ee3a24;
+  --oh-accent-hot: #ff4a2a;
+  --oh-muted: #5c5f4a;
+  --oh-sticker-new: #e8d44a;
+  --oh-sticker-free: #6ed080;
+
+  --oh-bg: var(--oh-paper);
+  --oh-bg-2: var(--oh-paper-deep);
+  --oh-surface: var(--oh-paper-white);
+  --oh-fg: var(--oh-ink);
+  --oh-fg-muted: var(--oh-muted);
+  --oh-cta: var(--oh-accent);
+  --oh-cta-hover: var(--oh-accent-hot);
+  --oh-band-fg: var(--oh-paper-white);
+  --oh-on-dark: var(--oh-paper-white);
+  --oh-shadow-colour: var(--oh-ink);
+}

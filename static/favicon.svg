@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="County Cricket Live">
+  <rect width="64" height="64" rx="16" fill="#1c7e84"/>
+  <circle cx="32" cy="32" r="16" fill="#f7faf9" stroke="#122326" stroke-width="3"/>
+  <path d="M20 26c8 4 16 4 24 0" fill="none" stroke="#122326" stroke-width="2"/>
+  <path d="M20 38c8-4 16-4 24 0" fill="none" stroke="#122326" stroke-width="2"/>
+</svg>

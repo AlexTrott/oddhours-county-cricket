@@ -1,0 +1,1218 @@
+/**
+ * OddHours House — Tokens + Component Recipes
+ * ===========================================
+ * Drop this single file into other OddHours repos with the Google Fonts link
+ * (see README). Prefer oddhours.css over inventing local styles.
+ */
+
+@import url("./tokens.css");
+
+/* -------------------------------------------------------------------------- */
+/* Base                                                                       */
+/* -------------------------------------------------------------------------- */
+
+.oh-root,
+.theme-cream,
+.theme-night,
+.theme-petrol,
+.theme-pip,
+.theme-spark,
+.theme-lido,
+.theme-pillar,
+.theme-olive {
+  color: var(--oh-fg);
+  background: var(--oh-bg);
+  font-family: var(--oh-font-body);
+  font-size: var(--oh-text-body);
+  font-weight: 500;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.oh-display {
+  font-family: var(--oh-font-display);
+  font-weight: 900;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 35, "WONK" 0.35;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+
+.oh-lede {
+  font-size: var(--oh-text-lg);
+  line-height: 1.45;
+  color: var(--oh-fg);
+  max-width: 38rem;
+}
+
+.oh-muted {
+  color: var(--oh-fg-muted);
+}
+
+.oh-mono {
+  font-family: var(--oh-font-mono);
+  font-size: 0.92em;
+  font-weight: 500;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Eyebrow pill                                                               */
+/* -------------------------------------------------------------------------- */
+
+.oh-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-surface);
+  color: var(--oh-fg);
+  font-family: var(--oh-font-body);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+  box-shadow: var(--oh-shadow-sm);
+}
+
+.oh-eyebrow--band {
+  background: var(--oh-band);
+  color: var(--oh-band-fg);
+}
+
+.oh-eyebrow--ink {
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+  border-color: var(--oh-ink);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Buttons                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.oh-btn {
+  --oh-btn-bg: var(--oh-surface);
+  --oh-btn-fg: var(--oh-fg);
+  --oh-btn-border: var(--oh-ink);
+  --oh-btn-shadow: var(--oh-shadow);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.875rem;
+  padding: 0.7rem 1.25rem;
+  border: var(--oh-border-width) solid var(--oh-btn-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-btn-bg);
+  color: var(--oh-btn-fg);
+  font-family: var(--oh-font-body);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+  box-shadow: var(--oh-btn-shadow);
+  cursor: pointer;
+  transition:
+    transform var(--oh-duration-fast) var(--oh-ease),
+    box-shadow var(--oh-duration-fast) var(--oh-ease),
+    background-color var(--oh-duration-fast) var(--oh-ease);
+}
+
+.oh-btn:focus-visible {
+  outline: var(--oh-border-width) solid var(--oh-fg);
+  outline-offset: 3px;
+}
+
+.oh-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--oh-shadow-colour);
+}
+
+.oh-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--oh-shadow-colour);
+}
+
+.oh-btn--primary {
+  --oh-btn-bg: var(--oh-cta);
+  --oh-btn-fg: var(--oh-ink);
+}
+
+.oh-btn--primary:hover {
+  background: var(--oh-cta-hover);
+}
+
+.oh-btn--secondary {
+  --oh-btn-bg: var(--oh-surface);
+  --oh-btn-fg: var(--oh-ink);
+}
+
+.oh-btn--ghost {
+  --oh-btn-bg: transparent;
+  --oh-btn-fg: var(--oh-on-dark);
+  --oh-btn-border: var(--oh-on-dark);
+  --oh-btn-shadow: 4px 4px 0 transparent;
+}
+
+.oh-btn--ghost:hover {
+  background: color-mix(in srgb, var(--oh-btn-fg) 12%, transparent);
+  box-shadow: 4px 4px 0 color-mix(in srgb, var(--oh-btn-fg) 35%, transparent);
+}
+
+.oh-btn--ink {
+  --oh-btn-bg: var(--oh-ink);
+  --oh-btn-fg: var(--oh-on-dark);
+  --oh-btn-border: var(--oh-ink);
+}
+
+/* Disabled / shop-closed / sold-out — flattened, muted, not a working buy.
+   --closed and --sold-out are the same visual. Use a <span> or disabled
+   <button>, never an <a href>. */
+.oh-btn:disabled,
+.oh-btn[aria-disabled="true"],
+.oh-btn--closed,
+.oh-btn--sold-out {
+  --oh-btn-bg: color-mix(in srgb, var(--oh-muted) 28%, var(--oh-surface));
+  --oh-btn-fg: var(--oh-fg-muted);
+  --oh-btn-border: color-mix(in srgb, var(--oh-ink) 55%, var(--oh-muted));
+  --oh-btn-shadow: 1px 1px 0 var(--oh-shadow-colour);
+  background: var(--oh-btn-bg);
+  color: var(--oh-btn-fg);
+  border-color: var(--oh-btn-border);
+  box-shadow: var(--oh-btn-shadow);
+  transform: none;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.oh-btn:disabled:hover,
+.oh-btn:disabled:active,
+.oh-btn[aria-disabled="true"]:hover,
+.oh-btn[aria-disabled="true"]:active,
+.oh-btn--closed:hover,
+.oh-btn--closed:active,
+.oh-btn--sold-out:hover,
+.oh-btn--sold-out:active {
+  transform: none;
+  background: var(--oh-btn-bg);
+  box-shadow: var(--oh-btn-shadow);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Filter chips — compact pills, not rotated oh-badge stickers              */
+/* Selected visual is aria-pressed — no JS required                          */
+/* -------------------------------------------------------------------------- */
+
+.oh-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.oh-chip {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 2.125rem;
+  padding: 0.4rem 0.85rem;
+  border: var(--oh-border-width) solid var(--oh-ink);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-surface);
+  color: var(--oh-fg);
+  font-family: var(--oh-font-body);
+  font-size: 0.8125rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: var(--oh-shadow-sm);
+  cursor: pointer;
+  transform: none;
+  transition:
+    transform var(--oh-duration-fast) var(--oh-ease),
+    box-shadow var(--oh-duration-fast) var(--oh-ease),
+    background-color var(--oh-duration-fast) var(--oh-ease),
+    color var(--oh-duration-fast) var(--oh-ease);
+}
+
+.oh-chip:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--oh-shadow-colour);
+}
+
+.oh-chip:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--oh-shadow-colour);
+}
+
+.oh-chip:focus-visible {
+  outline: var(--oh-border-width) solid var(--oh-fg);
+  outline-offset: 3px;
+}
+
+.oh-chip[aria-pressed="true"] {
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+  border-color: var(--oh-ink);
+}
+
+.oh-chip[aria-pressed="true"]:hover,
+.oh-chip[aria-pressed="true"]:active {
+  transform: none;
+  box-shadow: var(--oh-shadow-sm);
+}
+
+/* Night inverts ink to paper; --oh-on-dark is also paper. Use canvas for type. */
+.theme-night .oh-chip[aria-pressed="true"] {
+  color: var(--oh-bg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Segmented mode — one shared outline, not a row of oh-btn pills            */
+/* Selected visual is aria-checked — no JS required                         */
+/* -------------------------------------------------------------------------- */
+
+.oh-seg {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-lg);
+  background: var(--oh-surface);
+  box-shadow: var(--oh-shadow-sm);
+}
+
+.oh-seg__opt {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1 1 0;
+  margin: 0;
+  min-width: 0;
+  min-height: 2.65rem;
+  padding: 0.65rem 1rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--oh-surface);
+  color: var(--oh-fg);
+  font-family: var(--oh-font-body);
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    background-color var(--oh-duration-fast) var(--oh-ease),
+    color var(--oh-duration-fast) var(--oh-ease);
+}
+
+.oh-seg__opt + .oh-seg__opt {
+  border-left: var(--oh-border);
+}
+
+.oh-seg__opt:hover {
+  background: color-mix(in srgb, var(--oh-ink) 7%, var(--oh-surface));
+}
+
+.oh-seg__opt:focus-visible {
+  outline: var(--oh-border-width) solid var(--oh-fg);
+  outline-offset: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.oh-seg__opt[aria-checked="true"] {
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+}
+
+.oh-seg__opt[aria-checked="true"]:hover {
+  background: var(--oh-ink);
+}
+
+.theme-night .oh-seg__opt[aria-checked="true"] {
+  color: var(--oh-bg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Floating nav pill                                                          */
+/* -------------------------------------------------------------------------- */
+
+.oh-nav-wrap {
+  position: fixed;
+  top: 1rem;
+  left: 50%;
+  z-index: 100;
+  width: min(96%, 68rem);
+  transform: translateX(-50%);
+}
+
+.oh-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding: 0.45rem 0.55rem 0.45rem 1rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-paper-white);
+  box-shadow: var(--oh-shadow);
+}
+
+.oh-nav__mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--oh-ink);
+  font-family: var(--oh-font-display);
+  font-size: 1.2rem;
+  font-weight: 900;
+  font-variation-settings: "SOFT" 40, "WONK" 0.4;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.oh-nav__logo {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 2.15rem;
+  height: 2.15rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-band);
+  color: var(--oh-band-fg);
+  font-family: var(--oh-font-display);
+  font-size: 1.05rem;
+  font-weight: 900;
+  font-variation-settings: "SOFT" 40, "WONK" 0.35;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.oh-nav__mark > span:not(.oh-nav__logo) {
+  font-family: var(--oh-font-body);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--oh-muted);
+  align-self: baseline;
+}
+
+.oh-nav__links {
+  display: none;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.oh-nav__links a {
+  padding: 0.55rem 0.7rem;
+  border-radius: var(--oh-radius-pill);
+  color: var(--oh-ink);
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--oh-duration-fast) var(--oh-ease);
+}
+
+.oh-nav__links a:hover,
+.oh-nav__links a[aria-current="page"] {
+  background: color-mix(in srgb, var(--oh-band) 35%, var(--oh-paper-white));
+}
+
+.oh-nav__toggle {
+  display: inline-flex;
+  width: 2.75rem;
+  height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-paper);
+  box-shadow: var(--oh-shadow-sm);
+  cursor: pointer;
+}
+
+.oh-nav__toggle span,
+.oh-nav__toggle span::before,
+.oh-nav__toggle span::after {
+  display: block;
+  width: 1rem;
+  height: 2px;
+  background: var(--oh-ink);
+  position: relative;
+}
+
+.oh-nav__toggle span::before,
+.oh-nav__toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.oh-nav__toggle span::before { top: -5px; }
+.oh-nav__toggle span::after { top: 5px; }
+
+.oh-nav__cta {
+  display: none;
+  min-height: 2.6rem;
+  padding-inline: 1rem;
+  font-size: 0.85rem;
+}
+
+.oh-nav.is-open .oh-nav__links {
+  display: flex;
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0.75rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-lg);
+  background: var(--oh-paper-white);
+  box-shadow: var(--oh-shadow-lg);
+}
+
+@media (min-width: 900px) {
+  .oh-nav__links { display: flex; }
+  .oh-nav__toggle { display: none; }
+  .oh-nav__cta { display: inline-flex; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Card (sticker)                                                             */
+/* -------------------------------------------------------------------------- */
+
+.oh-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--oh-space-4);
+  padding: var(--oh-space-5);
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-lg);
+  background: var(--oh-surface);
+  box-shadow: var(--oh-shadow);
+}
+
+.oh-card > p,
+.oh-card > ul,
+.oh-card > .oh-row {
+  width: 100%;
+}
+
+.oh-card--md { border-radius: var(--oh-radius-md); }
+.oh-card--band {
+  background: var(--oh-band);
+  color: var(--oh-band-fg);
+}
+.oh-card--ink {
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+  border-color: var(--oh-ink);
+}
+
+.oh-card h3,
+.oh-card .oh-card__title {
+  margin: 0;
+  font-family: var(--oh-font-display);
+  font-size: var(--oh-text-2xl);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.oh-card p {
+  margin: 0;
+  color: inherit;
+}
+
+.oh-card--ink p { color: color-mix(in srgb, var(--oh-on-dark) 82%, transparent); }
+.oh-card--band p { color: color-mix(in srgb, var(--oh-band-fg) 82%, transparent); }
+
+/* -------------------------------------------------------------------------- */
+/* Watermark overlay — print-safe sample stamp (files-only paywall)          */
+/* Stamp ALWAYS stays. Do not add .is-paid, [data-paid], --clear, or          */
+/* @media print { display: none }. Products pass their own stamp text.       */
+/* -------------------------------------------------------------------------- */
+
+.oh-watermark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+.oh-watermark__sheet {
+  position: relative;
+  z-index: 0;
+}
+
+.oh-watermark__stamp {
+  position: absolute;
+  inset: -8%;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1rem;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--oh-font-display);
+  font-size: clamp(2.35rem, 9vw, 4.75rem);
+  font-weight: 900;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 30, "WONK" 0.3;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--oh-ink);
+  opacity: 0.22;
+  transform: rotate(-16deg);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
+@media print {
+  .oh-watermark,
+  .oh-watermark__stamp {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    color-adjust: exact;
+  }
+
+  .oh-watermark__stamp {
+    display: grid;
+    opacity: 0.34;
+    color: var(--oh-ink);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Badge (rotated sticker)                                                    */
+/* -------------------------------------------------------------------------- */
+
+.oh-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.5rem;
+  padding: 0.45rem 0.7rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-sticker-new);
+  color: var(--oh-ink);
+  font-family: var(--oh-font-body);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: var(--oh-shadow-sm);
+  transform: rotate(-8deg);
+}
+
+.oh-badge--free {
+  background: var(--oh-sticker-free);
+  transform: rotate(7deg);
+}
+
+.oh-badge--accent {
+  background: var(--oh-accent);
+  transform: rotate(-6deg);
+}
+
+.oh-badge--band {
+  background: var(--oh-band);
+  color: var(--oh-band-fg);
+  transform: rotate(-5deg);
+}
+
+.oh-badge--ink {
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+  border-color: var(--oh-ink);
+  transform: rotate(6deg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Product tile                                                               */
+/* -------------------------------------------------------------------------- */
+
+.oh-tile {
+  position: relative;
+  display: grid;
+  gap: 0.85rem;
+  padding: 0.85rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-lg);
+  background: var(--oh-surface);
+  box-shadow: var(--oh-shadow);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform var(--oh-duration-fast) var(--oh-ease),
+    box-shadow var(--oh-duration-fast) var(--oh-ease);
+}
+
+.oh-tile:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--oh-shadow-lg);
+}
+
+.oh-tile__swatch {
+  aspect-ratio: 1;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-md);
+  background: var(--oh-tile-colour, var(--oh-band));
+  overflow: hidden;
+}
+
+.oh-tile__swatch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.oh-tile__meta {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.15rem 0.35rem 0.45rem;
+}
+
+.oh-tile__meta strong {
+  font-family: var(--oh-font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.oh-tile__meta span {
+  color: var(--oh-fg-muted);
+  font-size: var(--oh-text-sm);
+  font-weight: 600;
+}
+
+.oh-tile .oh-badge {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Pack / shop sticker card                                                   */
+/* Origin taste-pass: band×paper preview + white body + dual CTAs             */
+/* Restyles via CSS variables under cream / petrol / pip / spark              */
+/* -------------------------------------------------------------------------- */
+
+.oh-pack,
+.oh-pack-card {
+  --oh-pack-preview: color-mix(in srgb, var(--oh-band) 48%, var(--oh-paper));
+  --oh-pack-tile-mint: color-mix(in srgb, var(--oh-sticker-free) 58%, var(--oh-paper-white));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 26rem;
+  overflow: hidden;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-lg);
+  background: var(--oh-surface);
+  box-shadow: var(--oh-shadow);
+  color: var(--oh-ink);
+}
+
+.oh-pack__preview {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+  padding: 1.15rem 1.15rem 1.35rem;
+  background: var(--oh-pack-preview);
+}
+
+.oh-pack__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding-right: 4.5rem;
+  min-height: 2.1rem;
+}
+
+.oh-pack__badges .oh-badge {
+  flex: 0 0 auto;
+  width: max-content;
+  max-width: none;
+}
+
+.oh-pack__price {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.85rem;
+  padding: 0.35rem 0.7rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-paper-white);
+  color: var(--oh-ink);
+  font-family: var(--oh-font-body);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  box-shadow: var(--oh-shadow-sm);
+  white-space: nowrap;
+}
+
+.oh-pack__tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.oh-pack__tile {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  padding: 0.55rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-md);
+  background: var(--oh-paper-white);
+  box-shadow: var(--oh-shadow-sm);
+  color: var(--oh-ink);
+  overflow: hidden;
+}
+
+.oh-pack__tile--mint {
+  background: var(--oh-pack-tile-mint);
+}
+
+.oh-pack__tile--band {
+  background: color-mix(in srgb, var(--oh-band) 35%, var(--oh-paper-white));
+}
+
+.oh-pack__tile svg,
+.oh-pack__tile img {
+  width: 72%;
+  height: 72%;
+  display: block;
+  object-fit: contain;
+}
+
+.oh-pack__body {
+  display: grid;
+  gap: 0.7rem;
+  padding: 1.25rem 1.25rem 1.35rem;
+  background: var(--oh-surface);
+}
+
+.oh-pack__title {
+  margin: 0;
+  font-family: var(--oh-font-display);
+  font-size: clamp(1.65rem, 4vw, 2rem);
+  font-weight: 900;
+  font-variation-settings: "SOFT" 35, "WONK" 0.3;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.oh-pack__blurb {
+  margin: 0;
+  color: var(--oh-fg-muted);
+  font-size: var(--oh-text-sm);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.oh-pack__meta {
+  margin: 0;
+  color: var(--oh-fg-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.oh-pack__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.oh-pack__actions .oh-btn {
+  flex: 1 1 auto;
+  min-height: 2.6rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.9rem;
+}
+
+.oh-pack__link,
+.oh-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  margin-top: 0.15rem;
+  color: var(--oh-ink);
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+}
+
+.oh-pack__link:hover,
+.oh-text-link:hover {
+  color: color-mix(in srgb, var(--oh-ink) 78%, var(--oh-band));
+}
+
+/* -------------------------------------------------------------------------- */
+/* Hero band — full-bleed shop hero                                           */
+/* Origin taste-pass: stacked display + dual CTAs + wave cut                  */
+/* Colour via --oh-band / --oh-band-fg (dark bands use paper-white type)      */
+/* -------------------------------------------------------------------------- */
+
+.oh-hero-band {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  overflow: hidden;
+  background: var(--oh-band);
+  color: var(--oh-band-fg);
+  text-align: center;
+}
+
+.oh-hero-band__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 1.15rem;
+  width: min(100%, 40rem);
+  margin-inline: auto;
+  padding:
+    calc(var(--oh-nav-height) + clamp(2.5rem, 8vw, 4.5rem))
+    var(--oh-gutter)
+    clamp(2.5rem, 6vw, 3.75rem);
+}
+
+.oh-hero-band__title {
+  margin: 0.15rem 0 0;
+  display: grid;
+  gap: 0.05em;
+  font-family: var(--oh-font-display);
+  font-size: clamp(3.4rem, 14vw, 6.75rem);
+  font-weight: 900;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 30, "WONK" 0.35;
+  letter-spacing: -0.045em;
+  line-height: 0.88;
+  text-wrap: balance;
+}
+
+.oh-hero-band__title span {
+  display: block;
+}
+
+.oh-hero-band__lede {
+  margin: 0;
+  max-width: 28rem;
+  color: color-mix(in srgb, var(--oh-band-fg) 78%, transparent);
+  font-size: var(--oh-text-body);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.oh-hero-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.oh-hero-band__actions .oh-btn {
+  min-width: 11.5rem;
+}
+
+.oh-hero-band__link {
+  margin-top: 0.35rem;
+  color: var(--oh-band-fg);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.2em;
+}
+
+.oh-hero-band__link:hover {
+  color: color-mix(in srgb, var(--oh-band-fg) 75%, var(--oh-accent));
+}
+
+.oh-hero-band .oh-btn--ghost,
+.oh-band-bg .oh-btn--ghost,
+.oh-marquee--band .oh-btn--ghost {
+  --oh-btn-fg: var(--oh-band-fg);
+  --oh-btn-border: var(--oh-band-fg);
+}
+
+.oh-hero-band__deco {
+  position: absolute;
+  z-index: 0;
+  border: var(--oh-border);
+  pointer-events: none;
+}
+
+.oh-hero-band__deco--blob {
+  top: 18%;
+  right: -1.5rem;
+  width: clamp(4.5rem, 16vw, 7.5rem);
+  height: clamp(3.5rem, 12vw, 5.5rem);
+  border-radius: 40% 60% 55% 45%;
+  background: var(--oh-sticker-new);
+  transform: rotate(18deg);
+}
+
+.oh-hero-band__deco--chip {
+  top: 28%;
+  left: -1rem;
+  width: clamp(2.5rem, 8vw, 3.75rem);
+  height: clamp(2.5rem, 8vw, 3.75rem);
+  border-radius: 28%;
+  background: color-mix(in srgb, var(--oh-accent) 70%, var(--oh-band));
+  transform: rotate(-14deg);
+}
+
+.oh-hero-band__deco--dot {
+  bottom: 30%;
+  right: 12%;
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: var(--oh-radius-pill);
+  background: var(--oh-paper-white);
+}
+
+.oh-hero-band .oh-marquee {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-block: none;
+  border-top: var(--oh-border);
+  background: transparent;
+}
+
+.oh-hero-band .oh-wave {
+  position: relative;
+  z-index: 1;
+  --oh-wave-from: var(--oh-band);
+  --oh-wave-fill: var(--oh-paper);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Wave + zigzag dividers (cut / peel lines)                                  */
+/* -------------------------------------------------------------------------- */
+
+.oh-wave,
+.oh-zigzag {
+  display: block;
+  width: 100%;
+  line-height: 0;
+  color: var(--oh-wave-fill, var(--oh-bg));
+  background: var(--oh-wave-from, transparent);
+}
+
+.oh-wave svg,
+.oh-zigzag svg {
+  display: block;
+  width: 100%;
+  height: clamp(48px, 8vw, 88px);
+}
+
+.oh-wave--flip svg,
+.oh-zigzag--flip svg {
+  transform: scaleY(-1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Marquee / ticker                                                           */
+/* -------------------------------------------------------------------------- */
+
+.oh-marquee {
+  overflow: hidden;
+  border-block: var(--oh-border);
+  background: var(--oh-bg-2);
+  color: var(--oh-fg);
+}
+
+.oh-marquee--ink {
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+  border-color: var(--oh-ink);
+}
+
+.oh-marquee--band {
+  background: var(--oh-band);
+  color: var(--oh-band-fg);
+}
+
+.oh-marquee__track {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  padding: 0.85rem 0;
+  font-family: var(--oh-font-body);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  animation: oh-marquee 32s linear infinite;
+}
+
+.oh-marquee__track span[aria-hidden="true"] {
+  opacity: 0.45;
+}
+
+@keyframes oh-marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .oh-marquee__track { animation: none; }
+  .oh-btn:hover,
+  .oh-tile:hover,
+  .oh-chip:hover,
+  .oh-chip:active { transform: none; }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Footer wordmark                                                            */
+/* -------------------------------------------------------------------------- */
+
+.oh-footer {
+  padding: var(--oh-space-8) var(--oh-gutter) var(--oh-space-7);
+  background: var(--oh-ink);
+  color: var(--oh-on-dark);
+}
+
+.oh-footer__inner {
+  width: min(100%, var(--oh-content));
+  margin-inline: auto;
+  display: grid;
+  gap: var(--oh-space-6);
+}
+
+.oh-footer__wordmark {
+  margin: 0;
+  font-family: var(--oh-font-display);
+  font-size: clamp(4.5rem, 18vw, 12rem);
+  font-weight: 900;
+  font-variation-settings: "SOFT" 30, "WONK" 0.3;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  color: var(--oh-on-dark);
+}
+
+.oh-footer__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid color-mix(in srgb, var(--oh-on-dark) 28%, transparent);
+  color: color-mix(in srgb, var(--oh-on-dark) 75%, transparent);
+  font-size: var(--oh-text-sm);
+  font-weight: 600;
+}
+
+.oh-footer__meta a {
+  color: inherit;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Colour swatch (docs helper)                                                */
+/* -------------------------------------------------------------------------- */
+
+.oh-swatch {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-md);
+  background: var(--oh-surface);
+  box-shadow: var(--oh-shadow-sm);
+}
+
+.oh-swatch__chip {
+  min-height: 7rem;
+  border: var(--oh-border);
+  border-radius: var(--oh-radius-sm);
+  background: var(--oh-swatch, var(--oh-band));
+}
+
+.oh-swatch__chip--ink { color: var(--oh-on-dark); }
+
+.oh-swatch strong {
+  display: block;
+  font-family: var(--oh-font-display);
+  font-size: 1.35rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.oh-swatch code {
+  font-family: var(--oh-font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--oh-muted);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Utilities                                                                  */
+/* -------------------------------------------------------------------------- */
+
+.oh-band-bg { background: var(--oh-band); color: var(--oh-band-fg); }
+.oh-paper-bg { background: var(--oh-bg); color: var(--oh-fg); }
+.oh-ink-bg { background: var(--oh-ink); color: var(--oh-on-dark); }
+
+.oh-stack-sm { display: grid; gap: var(--oh-space-3); }
+.oh-stack { display: grid; gap: var(--oh-space-5); }
+.oh-stack-lg { display: grid; gap: var(--oh-space-7); }
+
+.oh-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
