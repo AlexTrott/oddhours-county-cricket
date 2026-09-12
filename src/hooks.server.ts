@@ -1,7 +1,9 @@
 import {
 	FAVOURITE_COOKIE,
 	SCHEME_COOKIE,
+	COMPETITION_COOKIE,
 	isCountyId,
+	isCompetitionId,
 	parseScheme,
 	type ColourScheme
 } from '$lib/config';
@@ -14,8 +16,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const favouriteRaw = event.cookies.get(FAVOURITE_COOKIE) ?? null;
 	const favourite = isCountyId(favouriteRaw) ? favouriteRaw : null;
 	const scheme: ColourScheme = parseScheme(event.cookies.get(SCHEME_COOKIE));
+	const competitionRaw = event.cookies.get(COMPETITION_COOKIE) ?? null;
+	const competition =
+		competitionRaw === 'all' || isCompetitionId(competitionRaw) ? competitionRaw : null;
 	event.locals.favourite = favourite;
 	event.locals.scheme = scheme;
+	event.locals.competition = competition;
 
 	return resolve(event, {
 		transformPageChunk: ({ html }) => {

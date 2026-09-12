@@ -29,6 +29,10 @@ export type MatchSummary = {
 	tossWinnerId: string | null;
 	tossDecision: string | null;
 	updatedAt: string;
+	round: string | null;
+	stale: boolean;
+	source: string;
+	sourceKey: string | null;
 	innings: InningsScore[];
 };
 

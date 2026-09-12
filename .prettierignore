@@ -6,3 +6,4 @@ data
 pnpm-lock.yaml
 coverage
 .git
+tests/fixtures

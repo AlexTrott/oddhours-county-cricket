@@ -1,4 +1,5 @@
-import { appConfig, countyById } from '../config/index.js';
+import { appConfig, countyById, ingestionEnabled } from '../config/index.js';
+import { assembleFreshness, logFreshnessAlerts } from '../ingest/freshness.js';
 import type {
 	BatterRow,
 	BowlerRow,
@@ -43,6 +44,10 @@ type MatchRecord = {
 	toss_winner_id: string | null;
 	toss_decision: string | null;
 	updated_at: string;
+	round: string | null;
+	stale: number | boolean;
+	source: string | null;
+	source_key: string | null;
 };
 
 function mapMatch(row: MatchRecord, innings: InningsScore[]): MatchSummary {
@@ -67,6 +72,10 @@ function mapMatch(row: MatchRecord, innings: InningsScore[]): MatchSummary {
 		tossWinnerId: row.toss_winner_id,
 		tossDecision: row.toss_decision,
 		updatedAt: row.updated_at,
+		round: row.round,
+		stale: Boolean(row.stale),
+		source: row.source ?? 'seed',
+		sourceKey: row.source_key,
 		innings
 	};
 }
@@ -86,7 +95,13 @@ function loadInnings(matchId: string): InningsScore[] {
 }
 
 export function listMatches(
-	opts: { status?: MatchSummary['status']; teamId?: string } = {}
+	opts: {
+		status?: MatchSummary['status'];
+		teamId?: string;
+		competitionId?: string;
+		knockout?: boolean;
+		order?: 'live-first' | 'date';
+	} = {}
 ): MatchSummary[] {
 	const db = ensureDatabase();
 	const clauses: string[] = [];
@@ -99,12 +114,20 @@ export function listMatches(
 		clauses.push('(home_team_id = ? OR away_team_id = ?)');
 		params.push(opts.teamId, opts.teamId);
 	}
+	if (opts.competitionId && opts.competitionId !== 'all') {
+		clauses.push('competition_id = ?');
+		params.push(opts.competitionId);
+	}
+	if (opts.knockout) {
+		clauses.push(`round IN ('quarter-final', 'semi-final', 'final')`);
+	}
 	const where = clauses.length ? `WHERE ${clauses.join(' AND ')}` : '';
+	const order =
+		opts.order === 'date'
+			? 'ORDER BY start_at, id'
+			: `ORDER BY CASE status WHEN 'live' THEN 0 WHEN 'upcoming' THEN 1 ELSE 2 END, start_at`;
 	const rows = db
-		.prepare(
-			`SELECT * FROM matches ${where}
-			 ORDER BY CASE status WHEN 'live' THEN 0 WHEN 'upcoming' THEN 1 ELSE 2 END, start_at`
-		)
+		.prepare(`SELECT * FROM matches ${where} ${order}`)
 		.all(...params) as MatchRecord[];
 	return rows.map((row) => mapMatch(row, loadInnings(row.id)));
 }
@@ -203,15 +226,34 @@ export function healthSnapshot() {
 	const live = db.prepare(`SELECT COUNT(*) AS n FROM matches WHERE status = 'live'`).get() as {
 		n: number;
 	};
+	const stale = db.prepare(`SELECT COUNT(*) AS n FROM matches WHERE stale = 1`).get() as {
+		n: number;
+	};
+	const ingestOn = ingestionEnabled();
+	const freshness = assembleFreshness({
+		ingestEnabled: ingestOn,
+		source: getMeta('source') ?? 'unknown',
+		updatedAt: getMeta('updated_at'),
+		liveUpdatedAt: getMeta('live_updated_at'),
+		fixturesUpdatedAt: getMeta('fixtures_updated_at'),
+		standingsUpdatedAt: getMeta('standings_updated_at'),
+		staleMatches: stale.n,
+		liveCount: live.n
+	});
+	const ok = !ingestOn || freshness.status !== 'unavailable';
+	logFreshnessAlerts(freshness);
 	return {
-		ok: true as const,
+		ok,
 		service: 'county-cricket-live',
 		db: 'ok',
 		matches: matches.n,
 		live: live.n,
-		source: getMeta('source') ?? 'unknown',
-		updated_at: getMeta('updated_at'),
-		season: appConfig.season
+		source: freshness.source,
+		updated_at: freshness.updatedAt,
+		season: appConfig.season,
+		ingest_enabled: ingestOn,
+		last_parse_failure: getMeta('last_parse_failure'),
+		freshness
 	};
 }
 

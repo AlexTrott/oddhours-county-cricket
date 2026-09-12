@@ -1,0 +1,230 @@
+{
+  "leagues": [
+    {
+      "id": "8052",
+      "name": "County Championship Division One",
+      "abbreviation": "County Championship Division One",
+      "calendar": [
+        "2026-04-03T00:00:00Z",
+        "2026-04-04T00:00:00Z",
+        "2026-04-05T00:00:00Z",
+        "2026-04-06T00:00:00Z",
+        "2026-04-10T00:00:00Z",
+        "2026-04-11T00:00:00Z",
+        "2026-04-12T00:00:00Z",
+        "2026-04-13T00:00:00Z",
+        "2026-04-17T00:00:00Z",
+        "2026-04-18T00:00:00Z",
+        "2026-04-19T00:00:00Z",
+        "2026-04-20T00:00:00Z",
+        "2026-04-24T00:00:00Z",
+        "2026-04-25T00:00:00Z",
+        "2026-04-26T00:00:00Z",
+        "2026-04-27T00:00:00Z",
+        "2026-05-01T00:00:00Z",
+        "2026-05-02T00:00:00Z",
+        "2026-05-03T00:00:00Z",
+        "2026-05-04T00:00:00Z",
+        "2026-05-08T00:00:00Z",
+        "2026-05-09T00:00:00Z",
+        "2026-05-10T00:00:00Z",
+        "2026-05-11T00:00:00Z",
+        "2026-05-15T00:00:00Z",
+        "2026-05-16T00:00:00Z",
+        "2026-05-17T00:00:00Z",
+        "2026-05-18T00:00:00Z",
+        "2026-06-07T00:00:00Z",
+        "2026-06-08T00:00:00Z",
+        "2026-06-09T00:00:00Z",
+        "2026-06-10T00:00:00Z",
+        "2026-06-12T00:00:00Z",
+        "2026-06-13T00:00:00Z",
+        "2026-06-14T00:00:00Z",
+        "2026-06-15T00:00:00Z",
+        "2026-06-19T00:00:00Z",
+        "2026-06-20T00:00:00Z",
+        "2026-06-21T00:00:00Z",
+        "2026-06-22T00:00:00Z",
+        "2026-08-20T00:00:00Z",
+        "2026-08-21T00:00:00Z",
+        "2026-08-22T00:00:00Z",
+        "2026-08-23T00:00:00Z",
+        "2026-08-27T00:00:00Z",
+        "2026-08-28T00:00:00Z",
+        "2026-08-29T00:00:00Z",
+        "2026-08-30T00:00:00Z",
+        "2026-09-02T00:00:00Z",
+        "2026-09-03T00:00:00Z",
+        "2026-09-04T00:00:00Z",
+        "2026-09-05T00:00:00Z",
+        "2026-09-08T00:00:00Z",
+        "2026-09-09T00:00:00Z",
+        "2026-09-10T00:00:00Z",
+        "2026-09-11T00:00:00Z",
+        "2026-09-15T00:00:00Z",
+        "2026-09-16T00:00:00Z",
+        "2026-09-17T00:00:00Z",
+        "2026-09-18T00:00:00Z",
+        "2026-09-24T00:00:00Z",
+        "2026-09-25T00:00:00Z",
+        "2026-09-26T00:00:00Z",
+        "2026-09-27T00:00:00Z"
+      ],
+      "calendarStartDate": "2026-04-03T00:00:00Z",
+      "calendarEndDate": "2026-09-27T00:00:00Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "1513384",
+      "date": "2026-09-08T09:30Z",
+      "endDate": "2026-09-12T23:59Z",
+      "name": "Sussex v Surrey",
+      "shortName": "SUS v SUR",
+      "description": "59th Match, County Championship Division One at Brighton, Sep 8-11 2026",
+      "status": {
+        "clock": 0,
+        "displayClock": "0'",
+        "period": 3,
+        "summary": "Match drawn",
+        "type": {
+          "id": "4",
+          "description": "Result",
+          "detail": "Final",
+          "shortDetail": "Final",
+          "state": "post"
+        }
+      },
+      "competitions": [
+        {
+          "id": "1513384",
+          "date": "2026-09-08T09:30Z",
+          "endDate": "2026-09-12T23:59Z",
+          "venue": {
+            "id": "56825",
+            "fullName": "County Ground, Hove",
+            "address": {
+              "city": "Brighton",
+              "state": "",
+              "country": "England",
+              "summary": "The County Ground Eaton Road Hove East Sussex BN3 3A Phone: 01273 827100"
+            },
+            "capacity": 4000,
+            "indoor": false
+          },
+          "status": {
+            "clock": 0,
+            "displayClock": "0'",
+            "period": 3,
+            "featuredAthletes": [],
+            "summary": "Match drawn",
+            "type": {
+              "id": "4",
+              "description": "Result",
+              "detail": "Final",
+              "shortDetail": "Final",
+              "state": "post"
+            }
+          },
+          "notes": [],
+          "competitors": [
+            {
+              "id": "1371",
+              "homeAway": "home",
+              "winner": "false",
+              "score": "393 & 167/3d (65 ov)",
+              "team": {
+                "id": "1371",
+                "abbreviation": "SUS",
+                "name": "Sussex",
+                "displayName": "Sussex"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 10,
+                  "runs": 393,
+                  "overs": 104.0,
+                  "isBatting": true,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 104.4,
+                  "isBatting": false,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 3,
+                  "value": 3,
+                  "displayValue": 3,
+                  "wickets": 3,
+                  "runs": 167,
+                  "overs": 65.0,
+                  "isBatting": true,
+                  "description": "declared",
+                  "isCurrent": 1
+                }
+              ]
+            },
+            {
+              "id": "1358",
+              "homeAway": "away",
+              "winner": "false",
+              "score": "321",
+              "team": {
+                "id": "1358",
+                "abbreviation": "SUR",
+                "name": "Surrey",
+                "displayName": "Surrey"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 104.0,
+                  "isBatting": false,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 10,
+                  "runs": 321,
+                  "overs": 104.4,
+                  "isBatting": true,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 3,
+                  "value": 3,
+                  "displayValue": 3,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 65.0,
+                  "isBatting": false,
+                  "description": "declared",
+                  "isCurrent": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

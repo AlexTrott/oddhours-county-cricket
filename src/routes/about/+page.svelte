@@ -23,13 +23,17 @@
 	<article class="oh-card">
 		<h2 class="oh-card__title">Sources</h2>
 		<p>
-			This boot uses <strong>seeded SQLite</strong> so the app can be developed without hitting the
-			web. The intended production path is ESPNCricinfo, via a separate
+			This boot uses <strong>seeded SQLite</strong> (full 2026 fixture snapshot plus demo
+			scorecards) so the app works offline. Production ingest hits ESPN public JSON from
 			<code class="oh-mono">pnpm ingest</code>
-			job — never from a page load.
+			when <code class="oh-mono">INGESTION_ENABLED=true</code> — never from a page load.
 		</p>
 		<ul>
-			<li>ESPNCricinfo — primary ingest path (not cut over yet).</li>
+			<li>ESPNCricinfo / ESPN site.web.api JSON — primary ingest path (gated by env).</li>
+			<li>
+				ESPNCricinfo live-scores RSS — live discovery fallback only (no scorecards; skips women’s
+				cricket).
+			</li>
 			<li>BBC Sport — not a fallback. robots.txt and Terms of Use forbid scraping.</li>
 			<li>Cricbuzz — not a fallback. robots.txt Disallow: / for generic user-agents.</li>
 		</ul>

@@ -47,4 +47,28 @@ function migrate(database: Database.Database): void {
 			.prepare(`INSERT INTO schema_migrations (id, name, applied_at) VALUES (1, '001_init', ?)`)
 			.run(new Date().toISOString());
 	}
+	ensureColumn(database, 'matches', 'round', 'TEXT');
+	ensureColumn(database, 'matches', 'stale', 'INTEGER NOT NULL DEFAULT 0');
+	ensureColumn(database, 'matches', 'source', "TEXT NOT NULL DEFAULT 'seed'");
+	ensureColumn(database, 'matches', 'source_key', 'TEXT');
+	ensureColumn(database, 'matches', 'last_good_at', 'TEXT');
+	const ingest = database
+		.prepare(`SELECT name FROM schema_migrations WHERE name = ?`)
+		.get('002_ingest');
+	if (!ingest) {
+		database
+			.prepare(`INSERT INTO schema_migrations (id, name, applied_at) VALUES (2, '002_ingest', ?)`)
+			.run(new Date().toISOString());
+	}
+}
+
+function ensureColumn(
+	database: Database.Database,
+	table: string,
+	column: string,
+	definition: string
+): void {
+	const cols = database.prepare(`PRAGMA table_info(${table})`).all() as Array<{ name: string }>;
+	if (cols.some((col) => col.name === column)) return;
+	database.exec(`ALTER TABLE ${table} ADD COLUMN ${column} ${definition}`);
 }

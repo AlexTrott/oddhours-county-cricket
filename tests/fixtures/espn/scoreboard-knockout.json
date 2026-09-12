@@ -1,0 +1,573 @@
+{
+  "leagues": [
+    {
+      "id": "8053",
+      "name": "Twenty20 Cup (England)",
+      "abbreviation": "Vitality Blast",
+      "calendar": [
+        "2026-05-22T00:00:00Z",
+        "2026-05-23T00:00:00Z",
+        "2026-05-24T00:00:00Z",
+        "2026-05-25T00:00:00Z",
+        "2026-05-26T00:00:00Z",
+        "2026-05-27T00:00:00Z",
+        "2026-05-29T00:00:00Z",
+        "2026-05-30T00:00:00Z",
+        "2026-05-31T00:00:00Z",
+        "2026-06-02T00:00:00Z",
+        "2026-06-03T00:00:00Z",
+        "2026-06-04T00:00:00Z",
+        "2026-06-05T00:00:00Z",
+        "2026-06-06T00:00:00Z",
+        "2026-06-07T00:00:00Z",
+        "2026-06-09T00:00:00Z",
+        "2026-06-26T00:00:00Z",
+        "2026-06-28T00:00:00Z",
+        "2026-07-01T00:00:00Z",
+        "2026-07-03T00:00:00Z",
+        "2026-07-04T00:00:00Z",
+        "2026-07-05T00:00:00Z",
+        "2026-07-06T00:00:00Z",
+        "2026-07-08T00:00:00Z",
+        "2026-07-10T00:00:00Z",
+        "2026-07-12T00:00:00Z",
+        "2026-07-15T00:00:00Z",
+        "2026-07-18T00:00:00Z"
+      ],
+      "calendarStartDate": "2026-05-22T00:00:00Z",
+      "calendarEndDate": "2026-07-18T00:00:00Z"
+    }
+  ],
+  "events": [
+    {
+      "id": "1512887",
+      "date": "2026-07-18T10:00Z",
+      "endDate": "2026-07-19T23:59Z",
+      "name": "Northamptonshire v Somerset",
+      "shortName": "NOR v SOM",
+      "description": "1st semi-final, Vitality Blast Men at Birmingham, Jul 18 2026",
+      "status": {
+        "clock": 0,
+        "displayClock": "0'",
+        "period": 2,
+        "summary": "Northants won by 17 runs",
+        "type": {
+          "id": "1",
+          "description": "Result",
+          "detail": "Final",
+          "shortDetail": "Final",
+          "state": "post"
+        }
+      },
+      "competitions": [
+        {
+          "id": "1512887",
+          "date": "2026-07-18T10:00Z",
+          "endDate": "2026-07-19T23:59Z",
+          "venue": {
+            "id": "56788",
+            "fullName": "Edgbaston, Birmingham",
+            "address": {
+              "city": "Birmingham",
+              "state": "",
+              "country": "England",
+              "summary": "Edgbaston Stadium, Edgbaston Road, Edgbaston, Birmingham, West Midlands B5 7QU. (Phone: 0844 635 1092)"
+            },
+            "capacity": 24803,
+            "indoor": false
+          },
+          "status": {
+            "clock": 0,
+            "displayClock": "0'",
+            "period": 2,
+            "featuredAthletes": [
+              {
+                "abbreviation": "POTM",
+                "athlete": {
+                  "id": "308251",
+                  "name": "David Willey",
+                  "shortName": "Willey",
+                  "fullName": "David Jonathan Willey",
+                  "displayName": "David Willey",
+                  "position": "BLA",
+                  "headshot": "https://a.espncdn.com/i/headshots/cricket/players/full/308251.png",
+                  "team": {
+                    "id": "1"
+                  },
+                  "links": [
+                    {
+                      "rel": [
+                        "playercard",
+                        "desktop"
+                      ],
+                      "href": "https://www.espncricinfo.com/ci/content/player/308251.html"
+                    }
+                  ]
+                },
+                "displayName": "Player Of The Match",
+                "linescores": {
+                  "$ref": "http://new.core.espnuk.org/v2/sports/cricket/leagues/8053/events/1512887/competitions/1512887/competitors/1221/roster/308251/linescores"
+                },
+                "name": "playerOfTheMatch",
+                "playerId": 308251,
+                "shortDisplayName": "POTM",
+                "team": {
+                  "id": "1221"
+                },
+                "statistics": []
+              }
+            ],
+            "summary": "Northants won by 17 runs",
+            "type": {
+              "id": "1",
+              "description": "Result",
+              "detail": "Final",
+              "shortDetail": "Final",
+              "state": "post"
+            }
+          },
+          "notes": [],
+          "competitors": [
+            {
+              "id": "1221",
+              "homeAway": "home",
+              "winner": "true",
+              "score": "143",
+              "team": {
+                "id": "1221",
+                "abbreviation": "NOR",
+                "name": "Northamptonshire",
+                "displayName": "Northamptonshire"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 10,
+                  "runs": 143,
+                  "overs": 19.2,
+                  "isBatting": true,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 20.0,
+                  "isBatting": false,
+                  "description": "complete",
+                  "isCurrent": 1
+                }
+              ]
+            },
+            {
+              "id": "1333",
+              "homeAway": "away",
+              "winner": "false",
+              "score": "126/9 (20 ov, target 144)",
+              "team": {
+                "id": "1333",
+                "abbreviation": "SOM",
+                "name": "Somerset",
+                "displayName": "Somerset"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 19.2,
+                  "isBatting": false,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 9,
+                  "runs": 126,
+                  "overs": 20.0,
+                  "isBatting": true,
+                  "description": "complete",
+                  "isCurrent": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1512888",
+      "date": "2026-07-18T13:30Z",
+      "endDate": "2026-07-19T23:59Z",
+      "name": "Hampshire v Nottinghamshire",
+      "shortName": "HAM v NOT",
+      "description": "2nd semi-final, Vitality Blast Men at Birmingham, Jul 18 2026",
+      "status": {
+        "clock": 0,
+        "displayClock": "0'",
+        "period": 2,
+        "summary": "Hampshire won by 27 runs",
+        "type": {
+          "id": "1",
+          "description": "Result",
+          "detail": "Final",
+          "shortDetail": "Final",
+          "state": "post"
+        }
+      },
+      "competitions": [
+        {
+          "id": "1512888",
+          "date": "2026-07-18T13:30Z",
+          "endDate": "2026-07-19T23:59Z",
+          "venue": {
+            "id": "56788",
+            "fullName": "Edgbaston, Birmingham",
+            "address": {
+              "city": "Birmingham",
+              "state": "",
+              "country": "England",
+              "summary": "Edgbaston Stadium, Edgbaston Road, Edgbaston, Birmingham, West Midlands B5 7QU. (Phone: 0844 635 1092)"
+            },
+            "capacity": 24803,
+            "indoor": false
+          },
+          "status": {
+            "clock": 0,
+            "displayClock": "0'",
+            "period": 2,
+            "featuredAthletes": [
+              {
+                "abbreviation": "POTM",
+                "athlete": {
+                  "id": "748793",
+                  "name": "Joe Weatherley",
+                  "shortName": "Weatherley",
+                  "fullName": "Joe James Weatherley",
+                  "displayName": "Joe Weatherley",
+                  "position": "BT",
+                  "headshot": "https://a.espncdn.com/i/headshots/cricket/players/default-player-logo-500.png",
+                  "team": {
+                    "id": "1"
+                  },
+                  "links": [
+                    {
+                      "rel": [
+                        "playercard",
+                        "desktop"
+                      ],
+                      "href": "https://www.espncricinfo.com/ci/content/player/748793.html"
+                    }
+                  ]
+                },
+                "displayName": "Player Of The Match",
+                "linescores": {
+                  "$ref": "http://new.core.espnuk.org/v2/sports/cricket/leagues/8053/events/1512888/competitions/1512888/competitors/1051/roster/748793/linescores"
+                },
+                "name": "playerOfTheMatch",
+                "playerId": 748793,
+                "shortDisplayName": "POTM",
+                "team": {
+                  "id": "1051"
+                },
+                "statistics": []
+              }
+            ],
+            "summary": "Hampshire won by 27 runs",
+            "type": {
+              "id": "1",
+              "description": "Result",
+              "detail": "Final",
+              "shortDetail": "Final",
+              "state": "post"
+            }
+          },
+          "notes": [],
+          "competitors": [
+            {
+              "id": "1051",
+              "homeAway": "home",
+              "winner": "true",
+              "score": "187/3",
+              "team": {
+                "id": "1051",
+                "abbreviation": "HAM",
+                "name": "Hampshire",
+                "displayName": "Hampshire"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 3,
+                  "runs": 187,
+                  "overs": 20.0,
+                  "isBatting": true,
+                  "description": "complete",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 19.5,
+                  "isBatting": false,
+                  "description": "all out",
+                  "isCurrent": 1
+                }
+              ]
+            },
+            {
+              "id": "1231",
+              "homeAway": "away",
+              "winner": "false",
+              "score": "160 (19.5/20 ov, target 188)",
+              "team": {
+                "id": "1231",
+                "abbreviation": "NOT",
+                "name": "Nottinghamshire",
+                "displayName": "Nottinghamshire"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 20.0,
+                  "isBatting": false,
+                  "description": "complete",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 10,
+                  "runs": 160,
+                  "overs": 19.5,
+                  "isBatting": true,
+                  "description": "all out",
+                  "isCurrent": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "1512889",
+      "date": "2026-07-18T17:45Z",
+      "endDate": "2026-07-20T23:59Z",
+      "name": "Northamptonshire v Hampshire",
+      "shortName": "NOR v HAM",
+      "description": "Final (N), Vitality Blast Men at Birmingham, Jul 18 2026",
+      "status": {
+        "clock": 0,
+        "displayClock": "0'",
+        "period": 2,
+        "summary": "Northants won by 14 runs",
+        "type": {
+          "id": "1",
+          "description": "Result",
+          "detail": "Final",
+          "shortDetail": "Final",
+          "state": "post"
+        }
+      },
+      "competitions": [
+        {
+          "id": "1512889",
+          "date": "2026-07-18T17:45Z",
+          "endDate": "2026-07-20T23:59Z",
+          "venue": {
+            "id": "56788",
+            "fullName": "Edgbaston, Birmingham",
+            "address": {
+              "city": "Birmingham",
+              "state": "",
+              "country": "England",
+              "summary": "Edgbaston Stadium, Edgbaston Road, Edgbaston, Birmingham, West Midlands B5 7QU. (Phone: 0844 635 1092)"
+            },
+            "capacity": 24803,
+            "indoor": false
+          },
+          "status": {
+            "clock": 0,
+            "displayClock": "0'",
+            "period": 2,
+            "featuredAthletes": [
+              {
+                "abbreviation": "POTM",
+                "athlete": {
+                  "id": "696241",
+                  "name": "Ricardo Vasconcelos",
+                  "shortName": "",
+                  "fullName": "Ricardo Surrador Vasconcelos",
+                  "displayName": "Ricardo Vasconcelos",
+                  "position": "WBT",
+                  "headshot": "https://a.espncdn.com/i/headshots/cricket/players/default-player-logo-500.png",
+                  "team": {
+                    "id": "3"
+                  },
+                  "links": [
+                    {
+                      "rel": [
+                        "playercard",
+                        "desktop"
+                      ],
+                      "href": "https://www.espncricinfo.com/ci/content/player/696241.html"
+                    }
+                  ]
+                },
+                "displayName": "Player Of The Match",
+                "linescores": {
+                  "$ref": "http://new.core.espnuk.org/v2/sports/cricket/leagues/8053/events/1512889/competitions/1512889/competitors/1221/roster/696241/linescores"
+                },
+                "name": "playerOfTheMatch",
+                "playerId": 696241,
+                "shortDisplayName": "POTM",
+                "team": {
+                  "id": "1221"
+                },
+                "statistics": []
+              },
+              {
+                "abbreviation": "POTS",
+                "athlete": {
+                  "id": "403902",
+                  "name": "Liam Livingstone",
+                  "shortName": "Livingstone",
+                  "fullName": "Liam Stephen Livingstone",
+                  "displayName": "Liam Livingstone",
+                  "position": "BTA",
+                  "headshot": "https://a.espncdn.com/i/headshots/cricket/players/full/403902.png",
+                  "team": {
+                    "id": "1"
+                  },
+                  "links": [
+                    {
+                      "rel": [
+                        "playercard",
+                        "desktop"
+                      ],
+                      "href": "https://www.espncricinfo.com/ci/content/player/403902.html"
+                    }
+                  ]
+                },
+                "displayName": "Player Of The Series",
+                "linescores": {
+                  "$ref": "http://new.core.espnuk.org/v2/sports/cricket/leagues/8053/events/1512889/competitions/1512889/competitors/1116/roster/403902/linescores"
+                },
+                "name": "playerOfTheSeries",
+                "playerId": 403902,
+                "shortDisplayName": "POTS",
+                "team": {
+                  "id": "1116"
+                },
+                "statistics": []
+              }
+            ],
+            "summary": "Northants won by 14 runs",
+            "type": {
+              "id": "1",
+              "description": "Result",
+              "detail": "Final",
+              "shortDetail": "Final",
+              "state": "post"
+            }
+          },
+          "notes": [],
+          "competitors": [
+            {
+              "id": "1221",
+              "homeAway": "home",
+              "winner": "true",
+              "score": "169",
+              "team": {
+                "id": "1221",
+                "abbreviation": "NOR",
+                "name": "Northamptonshire",
+                "displayName": "Northamptonshire"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 10,
+                  "runs": 169,
+                  "overs": 19.5,
+                  "isBatting": true,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 19.2,
+                  "isBatting": false,
+                  "description": "all out",
+                  "isCurrent": 1
+                }
+              ]
+            },
+            {
+              "id": "1051",
+              "homeAway": "away",
+              "winner": "false",
+              "score": "155 (19.2/20 ov, target 170)",
+              "team": {
+                "id": "1051",
+                "abbreviation": "HAM",
+                "name": "Hampshire",
+                "displayName": "Hampshire"
+              },
+              "linescores": [
+                {
+                  "period": 1,
+                  "value": 1,
+                  "displayValue": 1,
+                  "wickets": 0,
+                  "runs": 0,
+                  "overs": 19.5,
+                  "isBatting": false,
+                  "description": "all out",
+                  "isCurrent": 0
+                },
+                {
+                  "period": 2,
+                  "value": 2,
+                  "displayValue": 2,
+                  "wickets": 10,
+                  "runs": 155,
+                  "overs": 19.2,
+                  "isBatting": true,
+                  "description": "all out",
+                  "isCurrent": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

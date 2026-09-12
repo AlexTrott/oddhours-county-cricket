@@ -24,6 +24,10 @@ const liveT20: MatchSummary = {
 	tossWinnerId: 'nottinghamshire',
 	tossDecision: 'bowl',
 	updatedAt: '2026-09-11T18:00:00.000Z',
+	round: 'group',
+	stale: false,
+	source: 'seed',
+	sourceKey: null,
 	innings: [
 		{
 			id: 'a',
