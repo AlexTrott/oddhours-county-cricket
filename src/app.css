@@ -111,6 +111,21 @@ a {
 	padding: var(--oh-space-5) var(--oh-gutter) var(--oh-space-7);
 }
 
+/* House .oh-seg uses overflow:hidden + min-width:0, which clips Championship / One-Day Cup on a phone. */
+.ccl-main .oh-seg__opt {
+	white-space: normal;
+	padding-inline: 0.45rem;
+	font-size: 0.8rem;
+}
+
+@media (max-width: 700px) {
+	.ccl-main .oh-seg__opt {
+		min-height: 3.1rem;
+		padding-inline: 0.3rem;
+		font-size: 0.74rem;
+	}
+}
+
 .ccl-tabbar {
 	position: fixed;
 	left: 0;

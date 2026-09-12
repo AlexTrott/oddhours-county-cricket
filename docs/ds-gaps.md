@@ -19,6 +19,7 @@ These are **app-local** (`ccl-*`) because the house file has no recipe:
 | County picker swatch     | `.ccl-swatch`                       | Colour chip, not a crest                                                  |
 | Seed / freshness banner  | `.ccl-banner` / `.ccl-freshness--*` | Product copy, not a shop pack card                                        |
 | Knockout round list      | `.ccl-knockout-list`                | House has no bracket / fixture-round recipe                               |
+| Seg label wrap on phone  | `.ccl-main .oh-seg__opt`             | House `.oh-seg` clips with `overflow: hidden`; do not invent a new `oh-seg` |
 
 `oh-pack`, `oh-watermark`, `oh-hero-band`, and `oh-marquee` are shop / generator recipes. They do not fit a live scorecard. Not reused.
 
