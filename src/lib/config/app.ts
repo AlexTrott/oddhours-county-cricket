@@ -24,7 +24,7 @@ export const appConfig: AppConfig = appConfigSchema.parse({
 			}
 		]
 	},
-	takedownEmail: process.env.TAKEDOWN_EMAIL?.trim() || 'takedown@example.com',
+	takedownEmail: 'takedown@example.com',
 	takedownIssuesUrl: 'https://github.com/AlexTrott/oddhours-county-cricket/issues',
 	series: {
 		championshipDivisionOne: {
