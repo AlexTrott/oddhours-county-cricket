@@ -21,7 +21,7 @@
 		<div class="oh-tile__swatch" style="--oh-tile-colour: var(--oh-accent)"></div>
 		<div class="oh-tile__meta">
 			<strong>Settings</strong>
-			<span>Scheme, alerts stub, YouTube stub</span>
+			<span>Scheme, alerts stub, YouTube IDs</span>
 		</div>
 	</a>
 	<a class="oh-tile" href="/health">

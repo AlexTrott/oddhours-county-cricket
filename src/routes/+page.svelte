@@ -10,6 +10,7 @@
 	let polledUpdated = $state<string | null>(null);
 	const live = $derived(polledLive ?? data.live);
 	const updatedAt = $derived(polledUpdated ?? data.updatedAt);
+	const source = $derived(data.source);
 
 	onMount(() => {
 		const interval = setInterval(async () => {
@@ -31,11 +32,11 @@
 <span class="oh-eyebrow oh-eyebrow--band">Live</span>
 <h1 class="ccl-page-title oh-display">County cricket, still going.</h1>
 <p class="oh-lede">
-	Championship, Blast, and One-Day Cup from seed today. Polls the local database every
+	Championship, Blast, and One-Day Cup. Polls the local database every
 	{appConfig.polling.liveSeconds}s. Does not scrape the web from this page.
 </p>
 
-<SeedBanner {updatedAt} />
+<SeedBanner {source} {updatedAt} />
 
 <section class="oh-stack-lg">
 	<div>
@@ -49,7 +50,7 @@
 		{:else}
 			<article class="oh-card">
 				<h3>Quiet out there</h3>
-				<p>No live games in the seed right now. Check fixtures.</p>
+				<p>No live games in the database right now. Check fixtures, or run ingest.</p>
 			</article>
 		{/if}
 	</div>

@@ -22,7 +22,7 @@
 
 <span class="oh-eyebrow">Diary</span>
 <h1 class="ccl-page-title oh-display">When the next ball is.</h1>
-<p class="oh-lede">Seeded 2026 fixtures. Championship, Blast, One-Day Cup — names from config.</p>
+<p class="oh-lede">Championship, Blast, One-Day Cup fixtures from SQLite. Names from config.</p>
 
 {#each grouped as [day, matches] (day)}
 	<section class="oh-stack">

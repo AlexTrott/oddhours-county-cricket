@@ -1,0 +1,21 @@
+services:
+  web:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      ORIGIN: http://localhost:3000
+      DATABASE_PATH: /data/county-cricket.sqlite
+    volumes:
+      - cricket-data:/data
+  ingest:
+    build: .
+    command: ['pnpm', 'ingest', '--watch']
+    environment:
+      DATABASE_PATH: /data/county-cricket.sqlite
+    volumes:
+      - cricket-data:/data
+    depends_on:
+      - web
+volumes:
+  cricket-data:

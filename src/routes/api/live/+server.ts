@@ -4,6 +4,7 @@ import { getMeta, listMatches } from '$lib/server/queries';
 export const GET = () => {
 	return json({
 		live: listMatches({ status: 'live' }),
-		updatedAt: getMeta('updated_at')
+		updatedAt: getMeta('updated_at'),
+		source: getMeta('source')
 	});
 };

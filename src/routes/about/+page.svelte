@@ -1,5 +1,6 @@
 <script lang="ts">
 	let { data } = $props();
+	const emailIsPlaceholder = $derived(data.takedownEmail.endsWith('@example.com'));
 </script>
 
 <svelte:head>
@@ -23,13 +24,13 @@
 	<article class="oh-card">
 		<h2 class="oh-card__title">Sources</h2>
 		<p>
-			This boot uses <strong>seeded SQLite</strong> so the app can be developed without hitting the
-			web. The intended production path is ESPNCricinfo, via a separate
+			Page loads read <strong>SQLite only</strong>. Scores arrive through a separate
 			<code class="oh-mono">pnpm ingest</code>
-			job — never from a page load.
+			job (optional <code class="oh-mono">--watch</code>) that talks to ESPN's public cricket JSON —
+			the same object IDs as ESPNCricinfo. BBC Sport and Cricbuzz are not fallbacks.
 		</p>
 		<ul>
-			<li>ESPNCricinfo — primary ingest path (not cut over yet).</li>
+			<li>ESPN / ESPNCricinfo — primary ingest path, off the request path.</li>
 			<li>BBC Sport — not a fallback. robots.txt and Terms of Use forbid scraping.</li>
 			<li>Cricbuzz — not a fallback. robots.txt Disallow: / for generic user-agents.</li>
 		</ul>
@@ -43,9 +44,16 @@
 	<article class="oh-card">
 		<h2 class="oh-card__title">Takedown</h2>
 		<p>
-			If you represent a rights holder and want something removed, email
-			<a href="mailto:{data.takedownEmail}">{data.takedownEmail}</a>
-			(placeholder). Season config: {data.season}.
+			If you represent a rights holder and want something removed, open a GitHub issue:
+			<a class="oh-text-link" href={data.takedownIssuesUrl}>{data.takedownIssuesUrl}</a>.
+			{#if emailIsPlaceholder}
+				A dedicated email is not published yet; set <code class="oh-mono">TAKEDOWN_EMAIL</code> before
+				a public deploy.
+			{:else}
+				You can also email
+				<a href="mailto:{data.takedownEmail}">{data.takedownEmail}</a>.
+			{/if}
+			Season config: {data.season}.
 		</p>
 	</article>
 </div>

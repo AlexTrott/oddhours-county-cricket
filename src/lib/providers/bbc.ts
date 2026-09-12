@@ -8,8 +8,8 @@ export const bbcProvider: ScoreProvider = {
 		'BBC robots.txt and Terms of Use forbid scraping, crawling, and systematic extraction. Not used as a fallback.',
 	async fetchLiveMatches() {
 		return {
-			ok: false,
-			skipped: true,
+			ok: false as const,
+			skipped: true as const,
 			reason: this.reason ?? 'blocked'
 		};
 	}

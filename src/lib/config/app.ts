@@ -24,13 +24,36 @@ export const appConfig: AppConfig = appConfigSchema.parse({
 			}
 		]
 	},
-	takedownEmail: 'takedown@example.com',
+	takedownEmail: process.env.TAKEDOWN_EMAIL?.trim() || 'takedown@example.com',
+	takedownIssuesUrl: 'https://github.com/AlexTrott/oddhours-county-cricket/issues',
 	series: {
-		championshipDivisionOne:
-			'https://www.espncricinfo.com/series/county-championship-division-one-2026',
-		championshipDivisionTwo:
-			'https://www.espncricinfo.com/series/county-championship-division-two-2026-1513324',
-		blast: 'https://www.espncricinfo.com/series/vitality-blast-2026',
-		oneDayCup: 'https://www.espncricinfo.com/series/metro-bank-one-day-cup-2026'
+		championshipDivisionOne: {
+			url: 'https://www.espncricinfo.com/series/county-championship-division-one-2026-1513323',
+			espnLeagueId: '8052',
+			cricinfoSeriesId: '1513323',
+			competitionId: 'championship',
+			groupId: 'division-one'
+		},
+		championshipDivisionTwo: {
+			url: 'https://www.espncricinfo.com/series/county-championship-division-two-2026-1513324',
+			espnLeagueId: '8204',
+			cricinfoSeriesId: '1513324',
+			competitionId: 'championship',
+			groupId: 'division-two'
+		},
+		blast: {
+			url: 'https://www.espncricinfo.com/series/vitality-blast-2026-1512690',
+			espnLeagueId: '8053',
+			cricinfoSeriesId: '1512690',
+			competitionId: 'blast',
+			groupId: null
+		},
+		oneDayCup: {
+			url: 'https://www.espncricinfo.com/series/metro-bank-one-day-cup-2026-1513325',
+			espnLeagueId: '8335',
+			cricinfoSeriesId: '1513325',
+			competitionId: 'one-day-cup',
+			groupId: null
+		}
 	}
 });

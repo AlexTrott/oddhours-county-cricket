@@ -8,9 +8,9 @@ describe('config schema', () => {
 		expect(new Set(COUNTY_IDS).size).toBe(18);
 	});
 
-	it('keeps YouTube channel IDs as placeholders', () => {
+	it('stores official public YouTube channel IDs', () => {
 		for (const county of counties) {
-			expect(county.youtubeChannelId).toBe('');
+			expect(county.youtubeChannelId).toMatch(/^UC[\w-]{22}$/);
 		}
 	});
 
@@ -34,11 +34,14 @@ describe('config schema', () => {
 		}
 	});
 
-	it('stores polling intervals and source selection', () => {
+	it('stores polling intervals, source selection, and ESPN series IDs', () => {
 		expect(appConfig.polling.liveSeconds).toBeGreaterThan(0);
 		expect(appConfig.sources.primary).toBe('espncricinfo');
 		expect(appConfig.sources.fallbacks).toEqual([]);
 		expect(appConfig.sources.blocked.map((item) => item.id).sort()).toEqual(['bbc', 'cricbuzz']);
+		expect(appConfig.series.championshipDivisionOne.espnLeagueId).toBe('8052');
+		expect(appConfig.series.blast.espnLeagueId).toBe('8053');
+		expect(appConfig.takedownIssuesUrl).toContain('github.com');
 	});
 
 	it('does not hard-code Championship groups in the standings UI', () => {

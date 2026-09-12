@@ -1,6 +1,8 @@
 import './validate.js';
 
-export { appConfig } from './app.js';
+import { appConfig } from './app.js';
+
+export { appConfig };
 export { counties, countyById, getCounty, COUNTY_IDS } from './counties.js';
 export { competitions, competitionById, getCompetition, groupForTeam } from './competitions.js';
 export {
@@ -15,4 +17,14 @@ export {
 	themeColorFor,
 	type ColourScheme
 } from './overlay.js';
-export type { County, Competition, AppConfig, Palette, SourceId } from './schema.js';
+export type { County, Competition, AppConfig, Palette, SourceId, SeriesEntry } from './schema.js';
+
+export function ingestSeriesList() {
+	const { series } = appConfig;
+	return [
+		series.championshipDivisionOne,
+		series.championshipDivisionTwo,
+		series.blast,
+		series.oneDayCup
+	];
+}

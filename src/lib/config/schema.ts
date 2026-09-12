@@ -16,7 +16,7 @@ export const countySchema = z.object({
 	abbreviation: z.string().regex(/^[A-Z]{3}$/),
 	blastName: z.string().min(1),
 	homeGround: z.string().min(1),
-	youtubeChannelId: z.string(),
+	youtubeChannelId: z.union([z.literal(''), z.string().regex(/^UC[\w-]{22}$/)]),
 	palette: z.object({
 		light: paletteSchema,
 		dark: paletteSchema
@@ -39,6 +39,14 @@ export const competitionSchema = z.object({
 
 export const sourceIdSchema = z.enum(['espncricinfo', 'bbc', 'cricbuzz']);
 
+export const seriesEntrySchema = z.object({
+	url: z.string().url(),
+	espnLeagueId: z.string().regex(/^\d+$/),
+	cricinfoSeriesId: z.string().regex(/^\d+$/),
+	competitionId: z.string().min(1),
+	groupId: z.string().nullable()
+});
+
 export const appConfigSchema = z.object({
 	season: z.number().int().min(2024),
 	siteName: z.string().min(1),
@@ -59,11 +67,12 @@ export const appConfigSchema = z.object({
 		)
 	}),
 	takedownEmail: z.string().min(1),
+	takedownIssuesUrl: z.string().url(),
 	series: z.object({
-		championshipDivisionOne: z.string(),
-		championshipDivisionTwo: z.string(),
-		blast: z.string(),
-		oneDayCup: z.string()
+		championshipDivisionOne: seriesEntrySchema,
+		championshipDivisionTwo: seriesEntrySchema,
+		blast: seriesEntrySchema,
+		oneDayCup: seriesEntrySchema
 	})
 });
 
@@ -72,3 +81,4 @@ export type County = z.infer<typeof countySchema>;
 export type Competition = z.infer<typeof competitionSchema>;
 export type AppConfig = z.infer<typeof appConfigSchema>;
 export type SourceId = z.infer<typeof sourceIdSchema>;
+export type SeriesEntry = z.infer<typeof seriesEntrySchema>;

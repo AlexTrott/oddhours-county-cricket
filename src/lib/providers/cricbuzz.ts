@@ -7,8 +7,8 @@ export const cricbuzzProvider: ScoreProvider = {
 	reason: 'Cricbuzz robots.txt Disallow: / for generic user-agents. Not used as a fallback.',
 	async fetchLiveMatches() {
 		return {
-			ok: false,
-			skipped: true,
+			ok: false as const,
+			skipped: true as const,
 			reason: this.reason ?? 'blocked'
 		};
 	}

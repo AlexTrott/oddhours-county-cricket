@@ -17,8 +17,16 @@
 </span>
 <h1 class="ccl-page-title oh-display">{data.county.name}</h1>
 <p class="oh-lede">
-	{data.county.blastName} in the Blast. Home: {data.county.homeGround}. YouTube channel ID:
-	{data.county.youtubeChannelId || 'placeholder'}.
+	{data.county.blastName} in the Blast. Home: {data.county.homeGround}.
+	{#if data.county.youtubeChannelId}
+		<a
+			class="oh-text-link"
+			href="https://www.youtube.com/channel/{data.county.youtubeChannelId}"
+			rel="noreferrer">Official YouTube</a
+		> (channel ID in config; this site does not discover live streams).
+	{:else}
+		No YouTube channel ID in config.
+	{/if}
 </p>
 
 <div class="oh-stack-lg">

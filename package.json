@@ -13,6 +13,9 @@
 		"build": "vite build",
 		"preview": "vite preview --host 0.0.0.0 --port 4173",
 		"ingest": "tsx src/lib/ingest/cli.ts",
+		"ingest:watch": "tsx src/lib/ingest/cli.ts --watch",
+		"start": "node build",
+		"start:with-ingest": "sh scripts/start.sh",
 		"db:reset": "tsx src/lib/server/reset.ts",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
@@ -27,7 +30,8 @@
 		"better-sqlite3": "^12.11.1",
 		"svelte": "^5.57.0",
 		"vite": "^7.3.6",
-		"zod": "^4.6.2"
+		"zod": "^4.6.2",
+		"tsx": "^4.23.13"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
@@ -40,7 +44,6 @@
 		"prettier": "^3.9.6",
 		"prettier-plugin-svelte": "^4.1.1",
 		"svelte-check": "^4.7.6",
-		"tsx": "^4.23.13",
 		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.70.0",
 		"vitest": "^5.0.0"

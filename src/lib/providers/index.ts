@@ -15,5 +15,10 @@ export function primaryProvider(): ScoreProvider {
 }
 
 export { bbcProvider, cricbuzzProvider, espncricinfoProvider };
-export type { ScoreProvider, ProviderResult, ProviderMatch } from './types.js';
+export type {
+	ScoreProvider,
+	ProviderResult,
+	ProviderMatchDetail,
+	FetchLiveResult
+} from './types.js';
 export { NotCutOverError } from './types.js';

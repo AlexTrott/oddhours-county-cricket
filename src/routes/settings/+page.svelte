@@ -73,12 +73,13 @@
 	</article>
 
 	<article class="oh-card">
-		<h2 class="oh-card__title">YouTube live</h2>
+		<h2 class="oh-card__title">YouTube</h2>
 		<p>
-			County channel IDs are empty placeholders in config. Discovery is a later milestone. Polling
-			intervals already live in config: live {data.polling.liveSeconds}s, standings
-			{data.polling.standingsSeconds}s, fixtures {data.polling.fixturesSeconds}s.
+			Official county channel IDs live in config. This app does not discover live streams. Polling
+			intervals: live {data.polling.liveSeconds}s, standings
+			{data.polling.standingsSeconds}s, fixtures {data.polling.fixturesSeconds}s — used by
+			<code class="oh-mono">pnpm ingest --watch</code>, not by page loads.
 		</p>
-		<button class="oh-btn oh-btn--sold-out" type="button" disabled>Not wired</button>
+		<button class="oh-btn oh-btn--sold-out" type="button" disabled>Live discovery later</button>
 	</article>
 </div>

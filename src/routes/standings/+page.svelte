@@ -24,7 +24,7 @@
 <span class="oh-eyebrow">Tables</span>
 <h1 class="ccl-page-title oh-display">Who's sitting where.</h1>
 <p class="oh-lede">
-	Groups come from config, not from this page. Seeded 2026 tables, not live scrape.
+	Groups come from config, not from this page. Tables come from SQLite (seed until ingest).
 </p>
 
 <div class="oh-stack">
